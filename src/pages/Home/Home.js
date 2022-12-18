@@ -5,6 +5,7 @@ import Hero from '../../components/Hero/Hero';
 import styled from 'styled-components';
 import { useQuery } from 'react-query';
 import Spinner from '../../components/common/Spinner/Spinner';
+import MovieCollection from '../../components/MovieCollection/MovieCollection';
 
 function Home() {
     const navigation = useNavigate();
@@ -27,6 +28,27 @@ function Home() {
         <Container>
             {isLoading && <Spinner />}
             {!isLoading && <Hero movie={data} />}
+            <MovieCollection
+                title="Upcoming"
+                fetchUrl={requests.requestUpcoming}
+            />
+            <MovieCollection
+                title="Now Playing"
+                fetchUrl={requests.requestNowPlaying}
+            />
+            <MovieCollection
+                title="Trending"
+                fetchUrl={requests.requestTrending}
+            />
+
+            <MovieCollection
+                title="Popular"
+                fetchUrl={requests.requestPopular}
+            />
+            <MovieCollection
+                title="Top Rated"
+                fetchUrl={requests.requestTopRated}
+            />
         </Container>
     );
 }
