@@ -2,17 +2,17 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 function Welcome() {
-    const [questions, setQuestion] = useState({
-        first: false,
-        second: false,
-        third: false,
-        fourth: false,
-        five: false,
-        six: false,
+    const [questions, setQuestions] = useState({
+        q1: false,
+        q2: false,
+        q3: false,
+        q4: false,
+        q5: false,
+        q6: false,
     });
 
     const toggleQuestion = (question) => {
-        setQuestion((state) => ({ ...state, [question]: !state[question] }));
+        setQuestions((state) => ({ ...state, [question]: !state[question] }));
     };
 
     return (
@@ -97,15 +97,15 @@ function Welcome() {
                 <Title center>Frequently Asked Questions</Title>
                 <FaqList>
                     <FaqListItem>
-                        <FaqQuestion onClick={() => toggleQuestion('first')}>
+                        <FaqQuestion onClick={() => toggleQuestion('q1')}>
                             <FaqButtonText>What is Netflix?</FaqButtonText>{' '}
-                            {questions.first ? (
+                            {questions.q1 ? (
                                 <i className="fa-solid fa-xmark"></i>
                             ) : (
                                 <i className="fa-solid fa-plus"></i>
                             )}
                         </FaqQuestion>
-                        {questions.first && (
+                        {questions.q1 && (
                             <FaqAnswer>
                                 Netflix is a streaming service that offers a
                                 wide variety of award-winning TV shows, movies,
@@ -120,17 +120,17 @@ function Welcome() {
                         )}
                     </FaqListItem>
                     <FaqListItem>
-                        <FaqQuestion onClick={() => toggleQuestion('second')}>
+                        <FaqQuestion onClick={() => toggleQuestion('q2')}>
                             <FaqButtonText>
                                 How much does Netflix cost?
                             </FaqButtonText>{' '}
-                            {questions.second ? (
+                            {questions.q2 ? (
                                 <i className="fa-solid fa-xmark"></i>
                             ) : (
                                 <i className="fa-solid fa-plus"></i>
                             )}
                         </FaqQuestion>
-                        {questions.second && (
+                        {questions.q2 && (
                             <FaqAnswer>
                                 Watch Netflix on your smartphone, tablet, Smart
                                 TV, laptop, or streaming device, all for one
@@ -140,15 +140,15 @@ function Welcome() {
                         )}
                     </FaqListItem>
                     <FaqListItem>
-                        <FaqQuestion onClick={() => toggleQuestion('third')}>
+                        <FaqQuestion onClick={() => toggleQuestion('q3')}>
                             <FaqButtonText>Where can i watch?</FaqButtonText>{' '}
-                            {questions.third ? (
+                            {questions.q3 ? (
                                 <i className="fa-solid fa-xmark"></i>
                             ) : (
                                 <i className="fa-solid fa-plus"></i>
                             )}
                         </FaqQuestion>
-                        {questions.third && (
+                        {questions.q3 && (
                             <FaqAnswer>
                                 Watch anywhere, anytime. Sign in with your
                                 Netflix account to watch instantly on the web at
@@ -166,15 +166,15 @@ function Welcome() {
                         )}
                     </FaqListItem>
                     <FaqListItem>
-                        <FaqQuestion onClick={() => toggleQuestion('fourth')}>
+                        <FaqQuestion onClick={() => toggleQuestion('q4')}>
                             <FaqButtonText>How do i cancel?</FaqButtonText>{' '}
-                            {questions.fourth ? (
+                            {questions.q4 ? (
                                 <i className="fa-solid fa-xmark"></i>
                             ) : (
                                 <i className="fa-solid fa-plus"></i>
                             )}
                         </FaqQuestion>
-                        {questions.fourth && (
+                        {questions.q4 && (
                             <FaqAnswer>
                                 Netflix is flexible. There are no pesky
                                 contracts and no commitments. You can easily
@@ -185,17 +185,17 @@ function Welcome() {
                         )}
                     </FaqListItem>
                     <FaqListItem>
-                        <FaqQuestion onClick={() => toggleQuestion('five')}>
+                        <FaqQuestion onClick={() => toggleQuestion('q5')}>
                             <FaqButtonText>
                                 What can i watch on Netflix?
                             </FaqButtonText>{' '}
-                            {questions.five ? (
+                            {questions.q5 ? (
                                 <i className="fa-solid fa-xmark"></i>
                             ) : (
                                 <i className="fa-solid fa-plus"></i>
                             )}
                         </FaqQuestion>
-                        {questions.five && (
+                        {questions.q5 && (
                             <FaqAnswer>
                                 Netflix has an extensive library of feature
                                 films, documentaries, TV shows, anime,
@@ -205,17 +205,17 @@ function Welcome() {
                         )}
                     </FaqListItem>
                     <FaqListItem>
-                        <FaqQuestion onClick={() => toggleQuestion('six')}>
+                        <FaqQuestion onClick={() => toggleQuestion('q6')}>
                             <FaqButtonText>
                                 Is Netflix good for kids?
                             </FaqButtonText>{' '}
-                            {questions.six ? (
+                            {questions.q6 ? (
                                 <i className="fa-solid fa-xmark"></i>
                             ) : (
                                 <i className="fa-solid fa-plus"></i>
                             )}
                         </FaqQuestion>
-                        {questions.six && (
+                        {questions.q6 && (
                             <FaqAnswer>
                                 The Netflix Kids experience is included in your
                                 membership to give parents control while kids

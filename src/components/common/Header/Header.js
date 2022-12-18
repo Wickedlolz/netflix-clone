@@ -1,12 +1,13 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Header() {
     return (
         <HeaderContainer>
-            <HeaderLogoLink href="#/">
+            <HeaderLogoLink to="/">
                 <HeaderLogo src="/assets/logo.png"></HeaderLogo>
             </HeaderLogoLink>
-            <SignInButton href="#/">Sign In</SignInButton>
+            <SignInButton to="/sign-in">Sign In</SignInButton>
         </HeaderContainer>
     );
 }
@@ -26,7 +27,7 @@ const HeaderContainer = styled.header`
     z-index: 1000;
 `;
 
-const HeaderLogoLink = styled.a`
+const HeaderLogoLink = styled(Link)`
     text-decoration: none;
     display: inline-block;
 `;
@@ -35,7 +36,7 @@ const HeaderLogo = styled.img`
     width: 180px;
 `;
 
-const SignInButton = styled.a`
+const SignInButton = styled(Link)`
     margin-right: 20px;
     text-decoration: none;
     color: #fff;
