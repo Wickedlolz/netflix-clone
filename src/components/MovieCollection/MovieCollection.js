@@ -24,12 +24,11 @@ function MovieCollection({ fetchUrl, title }) {
             <Title>{title}</Title>
             {!isLoading && (
                 <Carousel
-                    additionalTransfrom={0}
                     arrows
-                    centerMode={false}
                     containerClass="carousel-container"
                     draggable
                     infinite
+                    centerMode={true}
                     itemClass="carousel-item"
                     keyBoardControl
                     minimumTouchDrag={80}
@@ -59,8 +58,6 @@ function MovieCollection({ fetchUrl, title }) {
                             partialVisibilityGutter: 30,
                         },
                     }}
-                    rewind={false}
-                    rewindWithAnimation={false}
                     showDots={false}
                     slidesToSlide={1}
                     swipeable

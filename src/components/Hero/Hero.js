@@ -5,6 +5,7 @@ function Hero({ movie }) {
     return (
         <Container>
             <Image
+                loading="lazy"
                 src={
                     'https://image.tmdb.org/t/p/original' +
                         movie?.backdrop_path || movie?.poster_path
@@ -38,6 +39,7 @@ const Image = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top center;
 `;
 
 const Layout = styled.div`

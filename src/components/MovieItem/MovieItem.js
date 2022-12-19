@@ -10,6 +10,7 @@ function MovieItem({ movie }) {
     return (
         <Container to={'/movie/' + movie.id}>
             <Image
+                loading="lazy"
                 src={
                     'https://image.tmdb.org/t/p/w500' + movie?.backdrop_path ||
                     movie?.poster_path
