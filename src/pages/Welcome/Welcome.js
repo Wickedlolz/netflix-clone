@@ -18,7 +18,11 @@ function Welcome() {
     return (
         <Container>
             <HeroContainer>
-                <HeroImage loading="lazy" src="/assets/bg-img.jpg"></HeroImage>
+                <HeroImage
+                    loading="lazy"
+                    src="/assets/bg-img.jpg"
+                    alt="Netflix banner"
+                ></HeroImage>
                 <HeroLayout></HeroLayout>
                 <HeroContent>
                     <Title>Unlimited movies, TV shows, and more.</Title>
@@ -46,6 +50,7 @@ function Welcome() {
                     resize
                     mright
                     src="/assets/enjoy-tv.png"
+                    alt="Enjoy on your TV"
                 ></FeatureImage>
             </FeatureContainer>
             <FeatureContainer>
@@ -54,6 +59,7 @@ function Welcome() {
                     resize
                     mleft
                     src="/assets/shows.png"
+                    alt="Download your shows to watch offline"
                 ></FeatureImage>
 
                 <FeatureContent secondary>
@@ -79,6 +85,7 @@ function Welcome() {
                     resize
                     mright
                     src="/assets/watch-everywhere.png"
+                    alt="Watch everywhere"
                 ></FeatureImage>
             </FeatureContainer>
             <FeatureContainer>
@@ -87,6 +94,7 @@ function Welcome() {
                     resize
                     mleft
                     src="/assets/kids.png"
+                    alt="Create profiles for kids"
                 ></FeatureImage>
 
                 <FeatureContent secondary>

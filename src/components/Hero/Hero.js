@@ -10,6 +10,7 @@ function Hero({ movie }) {
                     'https://image.tmdb.org/t/p/original' +
                         movie?.backdrop_path || movie?.poster_path
                 }
+                alt={movie?.title || movie?.original_title}
             ></Image>
             <Layout></Layout>
             <Content>
