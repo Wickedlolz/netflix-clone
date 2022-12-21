@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Welcome() {
+    const navigation = useNavigate();
     const [questions, setQuestions] = useState({
         q1: false,
         q2: false,
@@ -13,6 +15,10 @@ function Welcome() {
 
     const toggleQuestion = (question) => {
         setQuestions((state) => ({ ...state, [question]: !state[question] }));
+    };
+
+    const navigateToHome = () => {
+        navigation('/home');
     };
 
     return (
@@ -32,7 +38,7 @@ function Welcome() {
                         your membership.
                     </Question>
                     <Input type="email" placeholder="Email address"></Input>
-                    <Button>
+                    <Button onClick={navigateToHome}>
                         Get Started <i className="fa-solid fa-angle-right"></i>
                     </Button>
                 </HeroContent>

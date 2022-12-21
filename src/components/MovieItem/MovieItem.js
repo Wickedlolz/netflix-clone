@@ -57,6 +57,8 @@ const Layout = styled.div`
     bottom: 0px;
     opacity: 0;
 
+    transition: opacity 300ms ease-in-out;
+
     background-color: rgba(0, 0, 0, 0.5);
 `;
 
@@ -67,6 +69,8 @@ const Title = styled.h3`
     opacity: 0;
     text-align: center;
 
+    transition: opacity 300ms ease-in-out;
+
     transform: translate(-50%, -50%);
 `;
 
@@ -76,4 +80,6 @@ const StyledIcon = styled.i`
     right: 20px;
     font-size: 22px;
     opacity: 0;
+
+    transition: opacity 300ms ease-in-out;
 `;

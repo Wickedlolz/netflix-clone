@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-function Hero({ movie }) {
+function Hero({ movie, openModal, closeModal }) {
     return (
         <Container>
             <Image
@@ -16,7 +16,7 @@ function Hero({ movie }) {
             <Content>
                 <Title>{movie?.title || movie?.original_title}</Title>
                 <Overview>{movie?.overview}</Overview>
-                <Play>
+                <Play onClick={openModal}>
                     <i className="fa-solid fa-play"></i> Play
                 </Play>
                 <MoreInfo to={'/movie/' + movie.id}>
