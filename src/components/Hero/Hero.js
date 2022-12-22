@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-function Hero({ movie, openModal, closeModal }) {
+function Hero({ movie, openModal }) {
     return (
         <Container>
             <Image
@@ -32,7 +32,7 @@ export default Hero;
 const Container = styled.article`
     position: relative;
     width: 100%;
-    height: 500px;
+    height: 550px;
     margin-bottom: 12px;
 `;
 
@@ -67,6 +67,7 @@ const Content = styled.div`
 `;
 
 const Title = styled.h1`
+    width: 45%;
     font-size: 42px;
     font-weight: bold;
     margin-bottom: 20px;

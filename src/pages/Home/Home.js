@@ -10,7 +10,7 @@ import TrailerModal from '../../components/TrailerModal/TrailerModal';
 import { useState } from 'react';
 
 function Home() {
-    const navigation = useNavigate();
+    const navigate = useNavigate();
     const { isLoading, error, data } = useQuery('randomMovie', () => {
         return fetch(requests.requestUpcoming)
             .then((res) => res.json())
@@ -32,12 +32,16 @@ function Home() {
 
     if (error) {
         // TODO!: Show notifaction for this error then redirect to home page.
-        return navigation('/');
+        return navigate('/');
     }
 
     return (
         <Container>
-            <TrailerModal open={open} handleCloseModal={handleCloseModal} />
+            {/* <TrailerModal
+                open={open}
+                handleCloseModal={handleCloseModal}
+                videos={{}}
+            /> */}
             {isLoading && <Spinner />}
             {!isLoading && (
                 <Hero

@@ -3,10 +3,10 @@ import styled from 'styled-components';
 function Footer() {
     return (
         <Container>
-            <p style={{ color: 'white' }}>
+            <Text>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Repellat, delectus?
-            </p>
+            </Text>
         </Container>
     );
 }
@@ -14,6 +14,9 @@ function Footer() {
 export default Footer;
 
 const Container = styled.footer`
-    margin-top: 10px;
     background-color: #000;
+`;
+
+const Text = styled.p`
+    color: white;
 `;

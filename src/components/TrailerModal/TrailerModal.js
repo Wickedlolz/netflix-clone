@@ -8,7 +8,7 @@ function TrailerModal({ open, handleCloseModal, videos }) {
     const [play, setPlay] = useState(true);
     const [muted, setMuted] = useState(true);
 
-    // const index = videos?.results?.findIndex((x) => x.type === 'Trailer');
+    const index = videos?.results?.findIndex((x) => x.type === 'Trailer');
 
     const handlePlayClick = () => setPlay(true);
     const handlePauseClick = () => setPlay(false);
@@ -20,8 +20,8 @@ function TrailerModal({ open, handleCloseModal, videos }) {
         <MuiModal open={open} onClose={handleCloseModal}>
             <Container>
                 <ReactPlayer
-                    // url={`https://www.youtube.com/watch?v=${videos.results[index]?.key}`}
-                    url={'https://www.youtube.com/watch?v=_Z3QKkl1WyM'}
+                    url={`https://www.youtube.com/watch?v=${videos.results[index]?.key}`}
+                    // url={'https://www.youtube.com/watch?v=_Z3QKkl1WyM'}
                     playing={play}
                     width="100%"
                     height="100%"
@@ -90,6 +90,7 @@ const PlayPauseButton = styled.button`
     padding: 5px 40px;
     font-size: 18px;
     border-radius: 14px;
+    cursor: pointer;
 `;
 
 const VolumeButton = styled.button`

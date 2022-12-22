@@ -8,4 +8,6 @@ export const requests = {
     requestUpcoming: `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`,
     requestMovieById: (movieId) =>
         `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US&append_to_response=videos`,
+    requestMovieCredits: (movieId) =>
+        `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`,
 };

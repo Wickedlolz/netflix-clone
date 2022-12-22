@@ -267,6 +267,7 @@ export default Welcome;
 
 const Container = styled.div`
     background-color: #222;
+    margin-bottom: 10px;
 `;
 
 const HeroContainer = styled.section`
