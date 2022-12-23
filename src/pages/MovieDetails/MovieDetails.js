@@ -10,11 +10,12 @@ import { requests } from '../../utils/requests';
 function MovieDetails() {
     const { movieId } = useParams();
     const navigate = useNavigate();
+
     const {
         isLoading,
         error,
         data: movie,
-    } = useQuery('movieDetails', () => {
+    } = useQuery(`movieDetails${movieId}`, () => {
         return fetch(requests.requestMovieById(movieId)).then((res) =>
             res.json()
         );
@@ -26,6 +27,14 @@ function MovieDetails() {
         );
     });
 
+    const similarMovies = useQuery('similarMovies', () => {
+        return fetch(requests.requestSimilarMovies(movieId)).then((res) =>
+            res.json()
+        );
+    });
+
+    window.scrollTo({ top: 0 });
+
     const [open, setOpen] = useState(false);
 
     const handleOpenModal = () => {
@@ -36,11 +45,11 @@ function MovieDetails() {
         setOpen(false);
     };
 
-    if (isLoading) {
+    if (isLoading && movieCredits.isLoading && similarMovies.isLoading) {
         return <Spinner />;
     }
 
-    if (error) {
+    if (error && movieCredits.error && similarMovies.error) {
         // TODO!: Show notification for this error.
         navigate('/home');
     }
@@ -83,7 +92,7 @@ function MovieDetails() {
                     {!movieCredits.isLoading && (
                         <Starring>
                             <StarringText>Starring</StarringText>:{' '}
-                            {movieCredits.data.cast
+                            {movieCredits?.data?.cast
                                 .slice(0, 3)
                                 .map((c) => c.name)
                                 .join(', ')}
@@ -92,9 +101,13 @@ function MovieDetails() {
                 </Content>
             </Preview>
             <Tagline>
-                <TaglineText>{movie.tagline}</TaglineText>
+                <TaglineText>{movie?.tagline}</TaglineText>
             </Tagline>
-            <MoreDetails movie={movie} cast={movieCredits.data.cast} />
+            <MoreDetails
+                movie={movie}
+                cast={movieCredits.data?.cast}
+                similar={similarMovies.data?.results}
+            />
             <Btn onClick={handleOpenModal}>Play Trailer</Btn>
         </Container>
     );

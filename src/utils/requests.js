@@ -10,4 +10,6 @@ export const requests = {
         `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US&append_to_response=videos`,
     requestMovieCredits: (movieId) =>
         `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`,
+    requestSimilarMovies: (movieId) =>
+        `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${API_KEY}&language=en-US&page=1`,
 };

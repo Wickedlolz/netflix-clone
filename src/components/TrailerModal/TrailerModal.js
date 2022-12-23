@@ -20,7 +20,7 @@ function TrailerModal({ open, handleCloseModal, videos }) {
         <MuiModal open={open} onClose={handleCloseModal}>
             <Container>
                 <ReactPlayer
-                    url={`https://www.youtube.com/watch?v=${videos.results[index]?.key}`}
+                    url={`https://www.youtube.com/watch?v=${videos?.results[index]?.key}`}
                     // url={'https://www.youtube.com/watch?v=_Z3QKkl1WyM'}
                     playing={play}
                     width="100%"
