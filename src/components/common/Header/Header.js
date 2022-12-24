@@ -15,12 +15,12 @@ function Header() {
 export default Header;
 
 const HeaderContainer = styled.header`
-    position: absolute;
+    position: sticky;
     top: 0px;
     left: 0px;
     right: 0px;
-    height: 80px;
-    background-color: transparent;
+    height: 70px;
+    background-color: #000;
     display: flex;
     justify-content: space-between;
     align-items: center;

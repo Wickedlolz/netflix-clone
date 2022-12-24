@@ -27,13 +27,11 @@ function MovieDetails() {
         );
     });
 
-    const similarMovies = useQuery('similarMovies', () => {
-        return fetch(requests.requestSimilarMovies(movieId)).then((res) =>
+    const recomemndedMovies = useQuery(`recomemndedMovies${movieId}`, () => {
+        return fetch(requests.requestRecomendedMovies(movieId)).then((res) =>
             res.json()
         );
     });
-
-    window.scrollTo({ top: 0 });
 
     const [open, setOpen] = useState(false);
 
@@ -45,11 +43,11 @@ function MovieDetails() {
         setOpen(false);
     };
 
-    if (isLoading && movieCredits.isLoading && similarMovies.isLoading) {
+    if (isLoading && movieCredits.isLoading && recomemndedMovies.isLoading) {
         return <Spinner />;
     }
 
-    if (error && movieCredits.error && similarMovies.error) {
+    if (error && movieCredits.error && recomemndedMovies.error) {
         // TODO!: Show notification for this error.
         navigate('/home');
     }
@@ -88,6 +86,23 @@ function MovieDetails() {
                             {movie?.genres.map((g) => g.name).join(' ')}
                         </InfoText>
                     </InfoWrapper>
+                    <Actions>
+                        <Button primary>
+                            <i className="fa-solid fa-play"></i> Play
+                        </Button>
+                        <Button secondary onClick={handleOpenModal}>
+                            <i className="fa-solid fa-circle-play"></i> Trailer
+                        </Button>
+                        <Button action="true">
+                            <i className="fa-solid fa-plus"></i>
+                        </Button>
+                        <Button action="true">
+                            <i className="fa-regular fa-thumbs-up"></i>
+                        </Button>
+                        {/* <Button>
+                            <i className="fa-regular fa-thumbs-down"></i>
+                        </Button> */}
+                    </Actions>
                     <Overview>{movie?.overview}</Overview>
                     {!movieCredits.isLoading && (
                         <Starring>
@@ -106,9 +121,8 @@ function MovieDetails() {
             <MoreDetails
                 movie={movie}
                 cast={movieCredits.data?.cast}
-                similar={similarMovies.data?.results}
+                recomended={recomemndedMovies.data?.results}
             />
-            <Btn onClick={handleOpenModal}>Play Trailer</Btn>
         </Container>
     );
 }
@@ -180,6 +194,30 @@ const InfoText = styled.span`
     padding: ${(props) => (props.rating ? '0px 8px' : '')};
 `;
 
+const Actions = styled.div`
+    width: 45%;
+    margin-bottom: 25px;
+`;
+
+const Button = styled.button`
+    background-color: ${(props) =>
+        props.primary ? '#fff' : props.action ? 'transparent' : '#505050'};
+    font-size: ${(props) => (props.action ? '18px' : '')};
+    padding: ${(props) =>
+        props.primary || props.secondary ? '8px 25px' : '7px 14px'};
+    color: ${(props) => (props.secondary || props.action ? '#fff' : '')};
+    border: ${(props) => (props.action ? '1px solid #fff' : 'none')};
+    outline: none;
+    border-radius: ${(props) =>
+        props.primary || props.secondary ? '7px' : '50%'};
+    font-weight: bold;
+    cursor: pointer;
+
+    &:not(:first-child) {
+        margin-left: 5px;
+    }
+`;
+
 const Overview = styled.p`
     width: 45%;
     margin-bottom: 25px;
@@ -203,9 +241,4 @@ const Tagline = styled.div`
 const TaglineText = styled.p`
     text-align: center;
     color: #a3a3a3;
-`;
-
-const Btn = styled.button`
-    background-color: white;
-    margin-top: 150px;
 `;

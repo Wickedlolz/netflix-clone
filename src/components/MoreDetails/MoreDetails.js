@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-function MoreDetails({ movie, cast, similar }) {
+function MoreDetails({ movie, cast, recomended }) {
     return (
         <Container>
             <Title>More Details</Title>
@@ -15,6 +15,10 @@ function MoreDetails({ movie, cast, similar }) {
                     <Text>
                         {movie?.spoken_languages.map((g) => g.name).join(' ')}
                     </Text>
+                </ListItem>
+                <ListItem>
+                    <SubTitle>Released</SubTitle>
+                    <Text>{movie?.release_date}</Text>
                 </ListItem>
                 <ListItem>
                     <SubTitle>Status</SubTitle>
@@ -34,7 +38,7 @@ function MoreDetails({ movie, cast, similar }) {
             </ContentList>
             <Title>More Like This</Title>
             <MoreLikeThis>
-                {similar?.map((s, i) => (
+                {recomended?.slice(0, 12).map((s, i) => (
                     <StyledLink key={i} to={'/movie/' + s.id}>
                         <Image
                             loading="lazy"
