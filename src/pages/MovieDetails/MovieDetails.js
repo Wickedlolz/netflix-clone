@@ -206,7 +206,7 @@ const Button = styled.button`
     cursor: pointer;
 
     &:not(:first-child) {
-        margin-left: 5px;
+        margin-left: 10px;
     }
 `;
 
