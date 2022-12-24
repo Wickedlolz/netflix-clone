@@ -4,9 +4,9 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import Layout from './components/common/Layout/Layout';
 import Welcome from './pages/Welcome/Welcome';
 import Home from './pages/Home/Home';
+import MovieDetails from './pages/MovieDetails/MovieDetails';
 
 import './App.css';
-import MovieDetails from './pages/MovieDetails/MovieDetails';
 
 const queryClient = new QueryClient({
     defaultOptions: {

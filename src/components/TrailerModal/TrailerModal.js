@@ -8,6 +8,10 @@ function TrailerModal({ open, handleCloseModal, videos }) {
     const [play, setPlay] = useState(true);
     const [muted, setMuted] = useState(true);
 
+    if (videos.length === 0) {
+        return null;
+    }
+
     const index = videos?.results?.findIndex((x) => x.type === 'Trailer');
 
     const handlePlayClick = () => setPlay(true);
@@ -21,7 +25,6 @@ function TrailerModal({ open, handleCloseModal, videos }) {
             <Container>
                 <ReactPlayer
                     url={`https://www.youtube.com/watch?v=${videos?.results[index]?.key}`}
-                    // url={'https://www.youtube.com/watch?v=_Z3QKkl1WyM'}
                     playing={play}
                     width="100%"
                     height="100%"

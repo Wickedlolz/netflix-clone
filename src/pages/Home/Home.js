@@ -6,8 +6,6 @@ import styled from 'styled-components';
 import { useQuery } from 'react-query';
 import Spinner from '../../components/common/Spinner/Spinner';
 import MovieCollection from '../../components/MovieCollection/MovieCollection';
-import TrailerModal from '../../components/TrailerModal/TrailerModal';
-import { useState } from 'react';
 
 function Home() {
     const navigate = useNavigate();
@@ -20,15 +18,6 @@ function Home() {
                 ];
             });
     });
-    const [open, setOpen] = useState(false);
-
-    const handleOpenModal = () => {
-        setOpen(true);
-    };
-
-    const handleCloseModal = () => {
-        setOpen(false);
-    };
 
     if (error) {
         // TODO!: Show notifaction for this error then redirect to home page.
@@ -37,19 +26,8 @@ function Home() {
 
     return (
         <Container>
-            {/* <TrailerModal
-                open={open}
-                handleCloseModal={handleCloseModal}
-                videos={{}}
-            /> */}
             {isLoading && <Spinner />}
-            {!isLoading && (
-                <Hero
-                    movie={data}
-                    openModal={handleOpenModal}
-                    closeModal={handleCloseModal}
-                />
-            )}
+            {!isLoading && <Hero movie={data} />}
             <MovieCollection
                 title="Upcoming"
                 fetchUrl={requests.requestUpcoming}

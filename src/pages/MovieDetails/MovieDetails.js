@@ -1,15 +1,17 @@
-import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { show } from '../../features/modal/modalSlice';
 import styled from 'styled-components';
+import { requests } from '../../utils/requests';
+
 import Spinner from '../../components/common/Spinner/Spinner';
 import MoreDetails from '../../components/MoreDetails/MoreDetails';
-import TrailerModal from '../../components/TrailerModal/TrailerModal';
-import { requests } from '../../utils/requests';
 
 function MovieDetails() {
     const { movieId } = useParams();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const {
         isLoading,
@@ -33,14 +35,8 @@ function MovieDetails() {
         );
     });
 
-    const [open, setOpen] = useState(false);
-
     const handleOpenModal = () => {
-        setOpen(true);
-    };
-
-    const handleCloseModal = () => {
-        setOpen(false);
+        dispatch(show({ videos: movie?.videos }));
     };
 
     if (isLoading && movieCredits.isLoading && recomemndedMovies.isLoading) {
@@ -54,11 +50,6 @@ function MovieDetails() {
 
     return (
         <Container>
-            <TrailerModal
-                open={open}
-                handleCloseModal={handleCloseModal}
-                videos={movie?.videos}
-            />
             <Preview>
                 <Image
                     loading="lazy"
@@ -131,6 +122,7 @@ export default MovieDetails;
 
 const Container = styled.section`
     color: #fff;
+    margin-bottom: 10px;
 `;
 
 const Preview = styled.section`
