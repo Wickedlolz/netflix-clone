@@ -67,7 +67,7 @@ const ListItem = styled.li`
 `;
 
 const Country = styled.p`
-    font-size: 13px;
+    font-size: 14px;
     cursor: pointer;
 
     &:hover {

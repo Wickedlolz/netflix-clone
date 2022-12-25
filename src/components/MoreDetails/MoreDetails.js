@@ -34,7 +34,6 @@ function MoreDetails({ movie, cast, recomended }) {
                 {cast?.map((person, i) => (
                     <ListItem key={i}>{person.name}</ListItem>
                 ))}
-                <ListItem></ListItem>
             </ContentList>
             <Title>More Like This</Title>
             <MoreLikeThis>

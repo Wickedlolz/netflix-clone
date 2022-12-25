@@ -7,6 +7,7 @@ import Home from './pages/Home/Home';
 import MovieDetails from './pages/MovieDetails/MovieDetails';
 
 import './App.css';
+import SignIn from './pages/SignIn/SignIn';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/" element={<Welcome />} />
                     <Route path="/home" element={<Home />} />
                     <Route path="/movie/:movieId" element={<MovieDetails />} />
+                    <Route path="/sign-in" element={<SignIn />} />
                 </Routes>
             </Layout>
         </QueryClientProvider>
