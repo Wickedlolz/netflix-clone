@@ -21,7 +21,12 @@ const useLocalStorage = (key, initialValue) => {
         }
     };
 
-    return [state, setItem];
+    const removeItem = () => {
+        localStorage.removeItem(key);
+        setState(initialValue);
+    };
+
+    return [state, setItem, removeItem];
 };
 
 export default useLocalStorage;

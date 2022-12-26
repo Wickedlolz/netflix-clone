@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { show } from '../../features/modal/modalSlice';
 import styled from 'styled-components';
 import { requests } from '../../utils/requests';
@@ -10,6 +10,7 @@ import MoreDetails from '../../components/MoreDetails/MoreDetails';
 
 function MovieDetails() {
     const { movieId } = useParams();
+    const isAuth = useSelector((state) => state.auth.isAuth);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -84,12 +85,16 @@ function MovieDetails() {
                         <Button secondary onClick={handleOpenModal}>
                             <i className="fa-solid fa-circle-play"></i> Trailer
                         </Button>
-                        <Button action="true">
-                            <i className="fa-solid fa-plus"></i>
-                        </Button>
-                        <Button action="true">
-                            <i className="fa-regular fa-thumbs-up"></i>
-                        </Button>
+                        {isAuth && (
+                            <>
+                                <Button action="true">
+                                    <i className="fa-solid fa-plus"></i>
+                                </Button>
+                                <Button action="true">
+                                    <i className="fa-regular fa-thumbs-up"></i>
+                                </Button>
+                            </>
+                        )}
                         {/* <Button>
                             <i className="fa-regular fa-thumbs-down"></i>
                         </Button> */}
