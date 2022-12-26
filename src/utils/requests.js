@@ -12,4 +12,9 @@ export const requests = {
         `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`,
     requestRecomendedMovies: (movieId) =>
         `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${API_KEY}&language=en-US&page=1`,
+    requestToken: `https://api.themoviedb.org/3/authentication/token/new?api_key=${API_KEY}`,
+    requestLogin: `https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=${API_KEY}`,
+    requestAccount: (token) =>
+        `https://api.themoviedb.org/3/account?api_key=${API_KEY}&session_id=${token}`,
+    requestSessionId: `https://api.themoviedb.org/3/authentication/session/new?api_key=${API_KEY}`,
 };

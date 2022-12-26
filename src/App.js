@@ -1,5 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { useDispatch } from 'react-redux';
+import { setUser } from './features/auth/authSlice';
+import useLocalStorage from './hooks/useLocalStorage';
 
 import Layout from './components/common/Layout/Layout';
 import Welcome from './pages/Welcome/Welcome';
@@ -18,6 +21,13 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+    const dispatch = useDispatch();
+    const [state, setItem] = useLocalStorage('session_id', undefined);
+
+    if (state) {
+        dispatch(setUser({ user: { ...state } }));
+    }
+
     return (
         <QueryClientProvider client={queryClient}>
             <Layout>

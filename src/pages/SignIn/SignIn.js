@@ -1,14 +1,74 @@
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../features/auth/authSlice';
+import { createSession, getAccount } from '../../services/userService';
+import useLocalStorage from '../../hooks/useLocalStorage';
+import { requests } from '../../utils/requests';
 import styled from 'styled-components';
 
 function SignIn() {
+    const [token, setToken] = useState();
+    const navigation = useNavigate();
+    const dispatch = useDispatch();
+    const [user, setItem] = useLocalStorage('session_id', undefined);
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm();
+
+    useEffect(() => {
+        fetch(requests.requestToken)
+            .then((res) => res.json())
+            .then((data) => setToken(data));
+    }, []);
+
+    const onSubmit = async (formData) => {
+        const { username, password } = formData;
+
+        try {
+            const loginResponse = await fetch(requests.requestLogin, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username,
+                    password,
+                    request_token: token.request_token,
+                }),
+            });
+
+            const loginData = await loginResponse.json();
+
+            if (loginData.success) {
+                const sessionId = await createSession(token.request_token);
+                const user = await getAccount(sessionId);
+
+                dispatch(
+                    setUser({
+                        user: {
+                            id: user.id,
+                            username: user.username,
+                            sessionToken: sessionId,
+                        },
+                    })
+                );
+
+                setItem({
+                    id: user.id,
+                    username: user.username,
+                    sessionToken: sessionId,
+                });
+
+                navigation('/home');
+            }
+        } catch (error) {
+            alert(error);
+        }
+    };
 
     return (
         <Container>
@@ -16,14 +76,41 @@ function SignIn() {
             <Layout></Layout>
             <FormWrapper>
                 <Title>Sign In</Title>
-                <Form>
-                    <Input type="email" placeholder="Email"></Input>
-                    <ErrorField>Please enter a valid email.</ErrorField>
-                    <Input type="password" placeholder="Password"></Input>
-                    <ErrorField>
-                        Your password must contain between 4 and 60 characters.
-                    </ErrorField>
-                    <Button>Sign In</Button>
+                <Form onSubmit={handleSubmit(onSubmit)}>
+                    <Input
+                        type="text"
+                        {...register('username', {
+                            required: true,
+                        })}
+                        placeholder="Username"
+                        hasError={errors.username}
+                    ></Input>
+                    {errors.username?.type === 'required' && (
+                        <ErrorField>Username is required.</ErrorField>
+                    )}
+                    <Input
+                        type="password"
+                        {...register('password', {
+                            required: true,
+                            minLength: 4,
+                            maxLength: 60,
+                        })}
+                        hasError={errors.password}
+                        placeholder="Password"
+                    ></Input>
+                    {errors.password?.type === 'required' && (
+                        <ErrorField>Password is required.</ErrorField>
+                    )}
+                    {(errors.password?.type === 'minLength' ||
+                        errors.password?.type === 'maxLength') && (
+                        <ErrorField>
+                            Your password must contain between 4 and 60
+                            characters.
+                        </ErrorField>
+                    )}
+                    <Button disabled={errors.email || errors.password}>
+                        Sign In
+                    </Button>
                 </Form>
                 <Box>
                     <CheckboxInput
@@ -35,9 +122,9 @@ function SignIn() {
                 </Box>
                 <Text>
                     New to Netflix?{' '}
-                    <StyledLink signup to={'/sign-up'}>
+                    <SignUpLink href="https://www.themoviedb.org/signup?redirect_to=http://localhost:3000/sign-in">
                         Sign up now
-                    </StyledLink>
+                    </SignUpLink>
                 </Text>
                 <Text sm>
                     This page is protected by Google reCAPTCHA to ensure you're
@@ -103,9 +190,11 @@ const Input = styled.input`
     margin-bottom: 4px;
     padding: 12px 10px;
     background-color: #333;
+    color: #fff;
     caret-color: #e50914;
 
-    border-bottom: 2px solid #e87c03;
+    margin-bottom: ${(props) => (props.hasError ? '' : '20px')};
+    border-bottom: ${(props) => (props.hasError ? '2px solid #e87c03' : '')};
 `;
 
 const Button = styled.button`
@@ -146,9 +235,19 @@ const Label = styled.label`
 
 const StyledLink = styled(Link)`
     width: 20%;
-    vertical-align: ${(props) => (props.signup ? '' : 'middle')};
-    font-size: ${(props) => (props.signup ? '20px' : '14px')};
-    color: ${(props) => (props.signup ? '#fff' : 'inherit')};
+    vertical-align: middle;
+    font-size: 14px;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+`;
+
+const SignUpLink = styled.a`
+    font-size: 20px;
+    color: #fff;
     text-decoration: none;
 
     &:hover {

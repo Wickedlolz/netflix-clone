@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 function Header() {
+    const isAuth = useSelector((state) => state.auth.isAuth);
+
     return (
         <HeaderContainer>
             <HeaderLogoLink to="/">
                 <HeaderLogo src="/assets/logo.png"></HeaderLogo>
             </HeaderLogoLink>
-            <SignInButton to="/sign-in">Sign In</SignInButton>
+            {!isAuth && <SignInButton to="/sign-in">Sign In</SignInButton>}
         </HeaderContainer>
     );
 }
