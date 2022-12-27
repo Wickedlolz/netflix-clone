@@ -37,18 +37,26 @@ function MoreDetails({ movie, cast, recomended }) {
             </ContentList>
             <Title>More Like This</Title>
             <MoreLikeThis>
-                {recomended?.slice(0, 12).map((s, i) => (
-                    <StyledLink key={i} to={'/movie/' + s.id}>
-                        <Image
-                            loading="lazy"
-                            src={
-                                'https://image.tmdb.org/t/p/w500' +
-                                    s?.backdrop_path || s?.poster_path
-                            }
-                            alt={s?.title || s?.original_title}
-                        ></Image>
-                    </StyledLink>
-                ))}
+                {recomended.length > 0 &&
+                    recomended?.slice(0, 12).map((s, i) => (
+                        <StyledLink key={i} to={'/movie/' + s.id}>
+                            <Image
+                                loading="lazy"
+                                src={
+                                    'https://image.tmdb.org/t/p/w500' +
+                                        s?.backdrop_path || s?.poster_path
+                                }
+                                alt={s?.title || s?.original_title}
+                            ></Image>
+                        </StyledLink>
+                    ))}
+
+                {recomended.length === 0 && (
+                    <Text sp>
+                        We don't have enough data to suggest any movies based on{' '}
+                        {movie.title}
+                    </Text>
+                )}
             </MoreLikeThis>
         </Container>
     );
@@ -80,7 +88,9 @@ const SubTitle = styled.h4`
     color: #c3bfbf;
 `;
 
-const Text = styled.p``;
+const Text = styled.p`
+    grid-column: ${(props) => (props.sp ? 'span 2' : '')};
+`;
 
 const MoreLikeThis = styled.div`
     display: grid;

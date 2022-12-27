@@ -4,7 +4,7 @@ export const notificationSlice = createSlice({
     name: 'notification',
     initialState: {
         open: false,
-        type: '',
+        type: 'success',
         message: '',
     },
     reducers: {

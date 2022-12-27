@@ -30,15 +30,15 @@ function Header() {
                 <>
                     <Navigation>
                         <List>
-                            <ItemLink>Home</ItemLink>
-                            <ItemLink>TV Shows</ItemLink>
-                            <ItemLink>Movies</ItemLink>
-                            <ItemLink>Latest</ItemLink>
-                            <ItemLink>My List</ItemLink>
+                            <ItemLink to="/home">Home</ItemLink>
+                            <ItemLink to="/shows">TV Shows</ItemLink>
+                            <ItemLink to="/movies">Movies</ItemLink>
+                            <ItemLink to="/latest">Latest</ItemLink>
+                            <ItemLink to="/my-list">My List</ItemLink>
                         </List>
                         <StyledProfileLink
                             to="/profile"
-                            onClick={handleSignOut}
+                            // onClick={handleSignOut}
                         >
                             <Avatar
                                 src="/assets/netflix-avatar.png"
