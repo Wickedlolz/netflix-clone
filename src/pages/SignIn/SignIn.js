@@ -134,7 +134,10 @@ function SignIn() {
                 </Box>
                 <Text>
                     New to Netflix?{' '}
-                    <SignUpLink href="https://www.themoviedb.org/signup?redirect_to=http://localhost:3000/sign-in">
+                    <SignUpLink
+                        href="https://www.themoviedb.org/signup?redirect_to=http://localhost:3000/sign-in"
+                        target="_blank"
+                    >
                         Sign up now
                     </SignUpLink>
                 </Text>
