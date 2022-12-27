@@ -37,7 +37,7 @@ function MoreDetails({ movie, cast, recomended }) {
             </ContentList>
             <Title>More Like This</Title>
             <MoreLikeThis>
-                {recomended.length > 0 &&
+                {recomended?.length > 0 &&
                     recomended?.slice(0, 12).map((s, i) => (
                         <StyledLink key={i} to={'/movie/' + s.id}>
                             <Image
@@ -51,7 +51,7 @@ function MoreDetails({ movie, cast, recomended }) {
                         </StyledLink>
                     ))}
 
-                {recomended.length === 0 && (
+                {recomended?.length === 0 && (
                     <Text sp>
                         We don't have enough data to suggest any movies based on{' '}
                         {movie.title}
