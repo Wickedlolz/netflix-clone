@@ -71,7 +71,10 @@ function SignIn() {
                 setIsLoading(false);
 
                 navigation('/home');
+                return;
             }
+
+            throw new Error(loginData.status_message);
         } catch (error) {
             setIsLoading(false);
             alert(error);
