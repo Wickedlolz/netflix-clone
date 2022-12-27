@@ -7,9 +7,11 @@ import { createSession, getAccount } from '../../services/userService';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { requests } from '../../utils/requests';
 import styled from 'styled-components';
+import Spinner from '../../components/common/Spinner/Spinner';
 
 function SignIn() {
     const [token, setToken] = useState();
+    const [isLoading, setIsLoading] = useState(true);
     const navigation = useNavigate();
     const dispatch = useDispatch();
     const [user, setItem] = useLocalStorage('session_id', undefined);
@@ -20,14 +22,18 @@ function SignIn() {
     } = useForm();
 
     useEffect(() => {
+        setIsLoading(true);
         fetch(requests.requestToken)
             .then((res) => res.json())
-            .then((data) => setToken(data));
+            .then((data) => {
+                setToken(data);
+                setIsLoading(false);
+            });
     }, []);
 
     const onSubmit = async (formData) => {
         const { username, password } = formData;
-
+        setIsLoading(true);
         try {
             const loginResponse = await fetch(requests.requestLogin, {
                 method: 'POST',
@@ -62,13 +68,19 @@ function SignIn() {
                     username: user.username,
                     sessionToken: sessionId,
                 });
+                setIsLoading(false);
 
                 navigation('/home');
             }
         } catch (error) {
+            setIsLoading(false);
             alert(error);
         }
     };
+
+    if (isLoading) {
+        return <Spinner />;
+    }
 
     return (
         <Container>

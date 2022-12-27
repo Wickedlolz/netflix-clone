@@ -105,8 +105,8 @@ const StyledProfileLink = styled(Link)`
 `;
 
 const Avatar = styled.img`
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     object-fit: cover;
 
     margin-right: 20px;
