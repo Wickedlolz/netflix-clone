@@ -4,6 +4,7 @@ import { hide } from '../../../features/modal/modalSlice';
 import TrailerModal from '../../TrailerModal/TrailerModal';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import Notification from '../Notification/Notification';
 
 function Layout({ children }) {
     const open = useSelector((state) => state.modal.open);
@@ -23,6 +24,7 @@ function Layout({ children }) {
                 videos={videos}
             />
             {{ ...children }}
+            <Notification />
             <Footer />
         </>
     );

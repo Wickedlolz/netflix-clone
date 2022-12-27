@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../features/auth/authSlice';
+import { notify } from '../../features/notification/notificationSlice';
 import { createSession, getAccount } from '../../services/userService';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { requests } from '../../utils/requests';
@@ -77,7 +78,7 @@ function SignIn() {
             throw new Error(loginData.status_message);
         } catch (error) {
             setIsLoading(false);
-            alert(error);
+            dispatch(notify({ message: error.toString(), type: 'error' }));
         }
     };
 

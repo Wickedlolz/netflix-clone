@@ -12,6 +12,7 @@ import MovieDetails from './pages/MovieDetails/MovieDetails';
 import './App.css';
 import SignIn from './pages/SignIn/SignIn';
 import NotFound from './pages/NotFound/NotFound';
+import Profile from './pages/Profile/Profile';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -37,6 +38,7 @@ function App() {
                     <Route path="/home" element={<Home />} />
                     <Route path="/movie/:movieId" element={<MovieDetails />} />
                     <Route path="/sign-in" element={<SignIn />} />
+                    <Route path="/profile" element={<Profile />} />
                     <Route path="/*" element={<NotFound />} />
                 </Routes>
             </Layout>
