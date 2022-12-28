@@ -13,6 +13,8 @@ import './App.css';
 import SignIn from './pages/SignIn/SignIn';
 import NotFound from './pages/NotFound/NotFound';
 import Profile from './pages/Profile/Profile';
+import AuthGuard from './components/common/AuthGuard/AuthGuard';
+import GuestGuard from './components/common/GuestGuard/GuestGuard';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -34,11 +36,18 @@ function App() {
         <QueryClientProvider client={queryClient}>
             <Layout>
                 <Routes>
-                    <Route path="/" element={<Welcome />} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/movie/:movieId" element={<MovieDetails />} />
-                    <Route path="/sign-in" element={<SignIn />} />
-                    <Route path="/profile" element={<Profile />} />
+                    <Route element={<GuestGuard />}>
+                        <Route path="/" element={<Welcome />} />
+                        <Route path="/sign-in" element={<SignIn />} />
+                    </Route>
+                    <Route element={<AuthGuard />}>
+                        <Route path="/home" element={<Home />} />
+                        <Route
+                            path="/movie/:movieId"
+                            element={<MovieDetails />}
+                        />
+                        <Route path="/profile" element={<Profile />} />
+                    </Route>
                     <Route path="/*" element={<NotFound />} />
                 </Routes>
             </Layout>
