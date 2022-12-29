@@ -1,24 +1,9 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../../features/auth/authSlice';
+import { Link, NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import useLocalStorage from '../../../hooks/useLocalStorage';
 
 function Header() {
     const isAuth = useSelector((state) => state.auth.isAuth);
-    const dispatch = useDispatch();
-    const navigation = useNavigate();
-    const [state, setItem, removeItem] = useLocalStorage(
-        'session_id',
-        undefined
-    );
-
-    const handleSignOut = (event) => {
-        event.preventDefault();
-        removeItem();
-        dispatch(logout());
-        navigation('/');
-    };
 
     return (
         <HeaderContainer>
@@ -36,10 +21,7 @@ function Header() {
                             <ItemLink to="/latest">Latest</ItemLink>
                             <ItemLink to="/my-list">My List</ItemLink>
                         </List>
-                        <StyledProfileLink
-                            to="/profile"
-                            // onClick={handleSignOut}
-                        >
+                        <StyledProfileLink to="/profile">
                             <Avatar
                                 src="/assets/netflix-avatar.png"
                                 loading="lazy"

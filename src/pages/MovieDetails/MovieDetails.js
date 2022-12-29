@@ -51,7 +51,7 @@ function MovieDetails() {
                 if (result.success) {
                     dispatch(
                         notify({
-                            message: 'Successfully added to My Watchlist.',
+                            message: 'Successfully added to My List.',
                             type: 'success',
                         })
                     );
