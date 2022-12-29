@@ -2,15 +2,19 @@ import { useQuery } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { show } from '../../features/modal/modalSlice';
-import styled from 'styled-components';
+import { notify } from '../../features/notification/notificationSlice';
 import { requests } from '../../utils/requests';
+import * as movieService from '../../services/movieService';
+import styled from 'styled-components';
 
 import Spinner from '../../components/common/Spinner/Spinner';
 import MoreDetails from '../../components/MoreDetails/MoreDetails';
 
 function MovieDetails() {
     const { movieId } = useParams();
-    const isAuth = useSelector((state) => state.auth.isAuth);
+    const { id, username, sessionToken, isAuth } = useSelector(
+        (state) => state.auth
+    );
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -40,12 +44,27 @@ function MovieDetails() {
         dispatch(show({ videos: movie?.videos }));
     };
 
+    const handleAddToWatchlist = () => {
+        movieService
+            .addToWatchlist(id, sessionToken, movieId)
+            .then((result) => {
+                if (result.success) {
+                    dispatch(
+                        notify({
+                            message: 'Successfully added to My Watchlist.',
+                            type: 'success',
+                        })
+                    );
+                }
+            });
+    };
+
     if (isLoading && movieCredits.isLoading && recomemndedMovies.isLoading) {
         return <Spinner />;
     }
 
     if (error && movieCredits.error && recomemndedMovies.error) {
-        // TODO!: Show notification for this error.
+        dispatch(notify({ message: 'Something went wrong.', type: 'error' }));
         navigate('/home');
     }
 
@@ -87,7 +106,10 @@ function MovieDetails() {
                         </Button>
                         {isAuth && (
                             <>
-                                <Button action="true">
+                                <Button
+                                    action="true"
+                                    onClick={handleAddToWatchlist}
+                                >
                                     <i className="fa-solid fa-plus"></i>
                                 </Button>
                                 <Button action="true">

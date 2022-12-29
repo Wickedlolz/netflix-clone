@@ -18,4 +18,8 @@ export const requests = {
         `https://api.themoviedb.org/3/account?api_key=${API_KEY}&session_id=${token}`,
     requestSessionId: `https://api.themoviedb.org/3/authentication/session/new?api_key=${API_KEY}`,
     requestSignOut: `https://api.themoviedb.org/3/authentication/session?api_key=${API_KEY}`,
+    requestAddToWatchlist: (accountId, sessionId) =>
+        `https://api.themoviedb.org/3/account/${accountId}/watchlist?api_key=${API_KEY}&session_id=${sessionId}`,
+    requestMarkAsFavorite: (accountId, sessionId) =>
+        `https://api.themoviedb.org/3/account/${accountId}/favorite?api_key=${API_KEY}&session_id=${sessionId}`,
 };
