@@ -23,3 +23,15 @@ export const createSession = async (requestToken) => {
 
     return data.session_id;
 };
+
+export const signOut = async (sessionToken) => {
+    const response = await fetch(requests.requestSignOut, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ session_id: sessionToken }),
+    });
+
+    return await response.json();
+};

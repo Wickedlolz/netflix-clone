@@ -15,7 +15,7 @@ export const notificationSlice = createSlice({
         },
         clearNotify: (state) => {
             state.open = false;
-            state.type = '';
+            state.type = 'success';
             state.message = '';
         },
     },

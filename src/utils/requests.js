@@ -17,4 +17,5 @@ export const requests = {
     requestAccount: (token) =>
         `https://api.themoviedb.org/3/account?api_key=${API_KEY}&session_id=${token}`,
     requestSessionId: `https://api.themoviedb.org/3/authentication/session/new?api_key=${API_KEY}`,
+    requestSignOut: `https://api.themoviedb.org/3/authentication/session?api_key=${API_KEY}`,
 };

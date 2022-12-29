@@ -72,7 +72,7 @@ const HeaderLogoLink = styled(Link)`
     display: inline-block;
     vertical-align: middle;
     width: 160px;
-    height: 100px;
+    height: 70px;
 `;
 
 const Navigation = styled.nav`
@@ -98,6 +98,8 @@ const ItemLink = styled(NavLink)`
 
 const HeaderLogo = styled.img`
     width: 180px;
+    height: 70px;
+    object-fit: cover;
 `;
 
 const StyledProfileLink = styled(Link)`

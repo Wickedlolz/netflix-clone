@@ -29,8 +29,16 @@ function SignIn() {
             .then((data) => {
                 setToken(data);
                 setIsLoading(false);
+            })
+            .catch((error) => {
+                dispatch(
+                    notify({
+                        message: error.status_message.toString(),
+                        type: 'error',
+                    })
+                );
             });
-    }, []);
+    }, [dispatch]);
 
     const onSubmit = async (formData) => {
         const { username, password } = formData;
@@ -51,7 +59,7 @@ function SignIn() {
             const loginData = await loginResponse.json();
 
             if (loginData.success) {
-                const sessionId = await createSession(token.request_token);
+                const sessionId = await createSession(loginData.request_token);
                 const user = await getAccount(sessionId);
 
                 dispatch(
