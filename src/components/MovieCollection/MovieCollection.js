@@ -62,9 +62,14 @@ function MovieCollection({ fetchUrl, title }) {
                     slidesToSlide={1}
                     swipeable
                 >
-                    {data.results.map((movie) => (
-                        <MovieItem key={movie.id} movie={movie} />
-                    ))}
+                    {data.results &&
+                        data.results.map((movie) => (
+                            <MovieItem key={movie.id} movie={movie} />
+                        ))}
+                    {data.items &&
+                        data.items.map((movie) => (
+                            <MovieItem key={movie.id} movie={movie} />
+                        ))}
                 </Carousel>
             )}
         </Container>

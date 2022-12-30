@@ -2,11 +2,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function MovieItem({ movie }) {
-    const handleLike = (event) => {
-        event.preventDefault();
-        alert(`You liked ${movie.title} successfully!`);
-    };
-
     return (
         <Container to={'/movie/' + movie.id}>
             <Image
@@ -18,10 +13,6 @@ function MovieItem({ movie }) {
                 alt={movie?.title || movie?.original_title}
             ></Image>
             <Layout></Layout>
-            <StyledIcon
-                onClick={(event) => handleLike(event)}
-                className="fa-regular fa-heart"
-            ></StyledIcon>
             <Title>{movie?.title || movie?.original_title}</Title>
         </Container>
     );
@@ -72,14 +63,4 @@ const Title = styled.h3`
     transition: opacity 300ms ease-in-out;
 
     transform: translate(-50%, -50%);
-`;
-
-const StyledIcon = styled.i`
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 22px;
-    opacity: 0;
-
-    transition: opacity 300ms ease-in-out;
 `;

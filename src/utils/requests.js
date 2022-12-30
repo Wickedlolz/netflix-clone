@@ -22,4 +22,7 @@ export const requests = {
         `https://api.themoviedb.org/3/account/${accountId}/watchlist?api_key=${API_KEY}&session_id=${sessionId}`,
     requestMarkAsFavorite: (accountId, sessionId) =>
         `https://api.themoviedb.org/3/account/${accountId}/favorite?api_key=${API_KEY}&session_id=${sessionId}`,
+    requestMarvel: `https://api.themoviedb.org/3/list/1?api_key=${API_KEY}&language=en-US`,
+    requestDisney: `https://api.themoviedb.org/3/list/5905?api_key=${API_KEY}&language=en-US`,
+    requestUnexpectedHeroes: `https://api.themoviedb.org/3/list/7067606?api_key=${API_KEY}&language=en-US&sort_by=vote_average.asc`,
 };
