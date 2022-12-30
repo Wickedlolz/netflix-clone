@@ -8,14 +8,13 @@ import Layout from './components/common/Layout/Layout';
 import Welcome from './pages/Welcome/Welcome';
 import Home from './pages/Home/Home';
 import MovieDetails from './pages/MovieDetails/MovieDetails';
-
-import './App.css';
 import SignIn from './pages/SignIn/SignIn';
 import NotFound from './pages/NotFound/NotFound';
 import Profile from './pages/Profile/Profile';
 import AuthGuard from './components/common/AuthGuard/AuthGuard';
 import GuestGuard from './components/common/GuestGuard/GuestGuard';
 import Movies from './pages/Movies/Movies';
+import Shows from './pages/Shows/Shows';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -44,6 +43,7 @@ function App() {
                     <Route element={<AuthGuard />}>
                         <Route path="/home" element={<Home />} />
                         <Route path="/movies" element={<Movies />} />
+                        <Route path="/tv-shows" element={<Shows />} />
                         <Route
                             path="/movie/:movieId"
                             element={<MovieDetails />}

@@ -16,7 +16,7 @@ function Header() {
                     <Navigation>
                         <List>
                             <ItemLink to="/home">Home</ItemLink>
-                            <ItemLink to="/shows">TV Shows</ItemLink>
+                            <ItemLink to="/tv-shows">TV Shows</ItemLink>
                             <ItemLink to="/movies">Movies</ItemLink>
                             <ItemLink to="/latest">Latest</ItemLink>
                             <ItemLink to="/my-list">My List</ItemLink>
