@@ -15,6 +15,7 @@ import AuthGuard from './components/common/AuthGuard/AuthGuard';
 import GuestGuard from './components/common/GuestGuard/GuestGuard';
 import Movies from './pages/Movies/Movies';
 import Shows from './pages/Shows/Shows';
+import ShowDetails from './pages/ShowDetails/ShowDetails';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -48,6 +49,7 @@ function App() {
                             path="/movie/:movieId"
                             element={<MovieDetails />}
                         />
+                        <Route path="/show/:showId" element={<ShowDetails />} />
                         <Route path="/profile" element={<Profile />} />
                     </Route>
                     <Route path="/*" element={<NotFound />} />

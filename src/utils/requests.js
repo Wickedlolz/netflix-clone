@@ -31,4 +31,10 @@ export const requests = {
     requestTopRatedTvShows: `${baseUrl}/tv/top_rated?api_key=${API_KEY}&language=en-US&page=1`,
     requestOnTheAirTvShows: `${baseUrl}/tv/on_the_air?api_key=${API_KEY}&language=en-US&page=1`,
     requestAiringTodayTvShows: `${baseUrl}/tv/airing_today?api_key=${API_KEY}&language=en-US&page=1`,
+    requestShowById: (showId) =>
+        `${baseUrl}/tv/${showId}?api_key=${API_KEY}&language=en-US&append_to_response=videos`,
+    requestShowCredits: (showId) =>
+        `${baseUrl}/tv/${showId}/credits?api_key=${API_KEY}&language=en-US`,
+    requestRecomendedShows: (showId) =>
+        `${baseUrl}/tv/${showId}/recommendations?api_key=${API_KEY}&language=en-US&page=1`,
 };

@@ -36,10 +36,18 @@ function MoreDetails({ movie, cast, recomended }) {
                 ))}
             </ContentList>
             <Title>More Like This</Title>
+            {/* TODO!: make extract more like this into a component  */}
             <MoreLikeThis>
                 {recomended?.length > 0 &&
                     recomended?.slice(0, 12).map((s, i) => (
-                        <StyledLink key={i} to={'/movie/' + s.id}>
+                        <StyledLink
+                            key={i}
+                            to={
+                                s?.first_air_date
+                                    ? '/show/' + s.id
+                                    : '/movie/' + s.id
+                            }
+                        >
                             <Image
                                 loading="lazy"
                                 src={
