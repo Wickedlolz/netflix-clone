@@ -9,6 +9,7 @@ import styled from 'styled-components';
 
 import Spinner from '../../components/common/Spinner/Spinner';
 import MoreDetails from '../../components/MoreDetails/MoreDetails';
+import MoreLikeThis from '../../components/MoreLikeThis/MoreLikeThis';
 
 function MovieDetails() {
     const { movieId } = useParams();
@@ -137,9 +138,13 @@ function MovieDetails() {
                 <TaglineText>{movie?.tagline}</TaglineText>
             </Tagline>
             <MoreDetails
-                movie={movie}
+                item={movie}
                 cast={movieCredits.data?.cast}
                 recomended={recomemndedMovies.data?.results}
+            />
+            <MoreLikeThis
+                recomended={recomemndedMovies.data?.results}
+                title={movie?.title || movie?.original_title}
             />
         </Container>
     );

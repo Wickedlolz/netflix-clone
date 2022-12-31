@@ -3,10 +3,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { requests } from '../../utils/requests';
 import { show } from '../../features/modal/modalSlice';
+import { notify } from '../../features/notification/notificationSlice';
 
 import MoreDetails from '../../components/MoreDetails/MoreDetails';
 import Spinner from '../../components/common/Spinner/Spinner';
 import styled from 'styled-components';
+import MoreLikeThis from '../../components/MoreLikeThis/MoreLikeThis';
 
 function ShowDetails() {
     const { showId } = useParams();
@@ -46,8 +48,13 @@ function ShowDetails() {
 
     const handleAddToWatchlist = () => {};
 
-    if (isLoading) {
+    if (isLoading && showCredits.isLoading && recomemndedShows.isLoading) {
         return <Spinner />;
+    }
+
+    if (error && showCredits.error && recomemndedShows.error) {
+        dispatch(notify({ message: 'Something went wrong.', type: 'error' }));
+        navigate('/home');
     }
 
     return (
@@ -125,9 +132,13 @@ function ShowDetails() {
                 <TaglineText>{tvShow?.tagline || tvShow?.status}</TaglineText>
             </Tagline>
             <MoreDetails
-                movie={tvShow}
+                item={tvShow}
                 cast={showCredits?.data?.cast}
                 recomended={recomemndedShows.data?.results}
+            />
+            <MoreLikeThis
+                recomended={recomemndedShows.data?.results}
+                title={tvShow?.name || tvShow?.original_name}
             />
         </Container>
     );
