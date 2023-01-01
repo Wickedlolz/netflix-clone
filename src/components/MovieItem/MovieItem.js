@@ -21,14 +21,14 @@ function MovieItem({ movie }) {
 export default MovieItem;
 
 const Container = styled(Link)`
-    position: relative;
+    /* position: relative; */
     color: #fff;
     text-decoration: none;
+    width: 100%;
 
     &:hover {
         div,
-        h3,
-        i {
+        h3 {
             opacity: 1;
         }
     }

@@ -21,7 +21,7 @@ function ShowItem({ show }) {
 export default ShowItem;
 
 const Container = styled(Link)`
-    position: relative;
+    /* position: relative; */
     color: #fff;
     text-decoration: none;
 
