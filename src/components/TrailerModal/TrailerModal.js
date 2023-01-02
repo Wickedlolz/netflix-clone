@@ -12,6 +12,19 @@ function TrailerModal({ open, handleCloseModal, videos }) {
         return null;
     }
 
+    if (videos?.results?.length === 0) {
+        return (
+            <MuiModal open={open} onClose={handleCloseModal}>
+                <Container>
+                    <CloseButton onClick={handleCloseModal}>
+                        <i className="fa-solid fa-xmark"></i>
+                    </CloseButton>
+                    <Text>Not found any videos.</Text>
+                </Container>
+            </MuiModal>
+        );
+    }
+
     const index = videos?.results?.findIndex((x) => x.type === 'Trailer');
 
     const handlePlayClick = () => setPlay(true);
@@ -105,4 +118,13 @@ const VolumeButton = styled.button`
     color: #fff;
     border: 2px solid #fff;
     cursor: pointer;
+`;
+
+const Text = styled.p`
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    top: 30%;
+    left: 35%;
+    font-size: 28px;
 `;

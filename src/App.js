@@ -1,3 +1,5 @@
+import { lazy, Suspense } from 'react';
+
 import { Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useDispatch } from 'react-redux';
@@ -6,7 +8,7 @@ import useLocalStorage from './hooks/useLocalStorage';
 
 import Layout from './components/common/Layout/Layout';
 import Welcome from './pages/Welcome/Welcome';
-import Home from './pages/Home/Home';
+// import Home from './pages/Home/Home';
 import MovieDetails from './pages/MovieDetails/MovieDetails';
 import SignIn from './pages/SignIn/SignIn';
 import NotFound from './pages/NotFound/NotFound';
@@ -17,6 +19,8 @@ import Movies from './pages/Movies/Movies';
 import Shows from './pages/Shows/Shows';
 import ShowDetails from './pages/ShowDetails/ShowDetails';
 import MyList from './pages/MyList/MyList';
+import Spinner from './components/common/Spinner/Spinner';
+const Home = lazy(() => import('./pages/Home/Home'));
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -43,7 +47,15 @@ function App() {
                         <Route path="/sign-in" element={<SignIn />} />
                     </Route>
                     <Route element={<AuthGuard />}>
-                        <Route path="/home" element={<Home />} />
+                        <Route
+                            path="/home"
+                            element={
+                                <Suspense fallback={<Spinner />}>
+                                    <Home />
+                                </Suspense>
+                            }
+                        />
+
                         <Route path="/movies" element={<Movies />} />
                         <Route path="/tv-shows" element={<Shows />} />
                         <Route
