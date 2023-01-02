@@ -1,12 +1,22 @@
+import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 function Header() {
     const isAuth = useSelector((state) => state.auth.isAuth);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    window.onscroll = () => {
+        setIsScrolled(!(window.pageYOffset === 0));
+
+        return () => (window.onscroll = null);
+    };
+
+    console.log(isScrolled);
 
     return (
-        <HeaderContainer>
+        <HeaderContainer isScrolled={isScrolled}>
             <HeaderLogoLink to="/">
                 <HeaderLogo src="/assets/logo.png"></HeaderLogo>
             </HeaderLogoLink>
@@ -42,7 +52,8 @@ const HeaderContainer = styled.header`
     left: 0px;
     right: 0px;
     height: 70px;
-    background-color: #000;
+    background-color: ${(props) =>
+        props.isScrolled ? 'rgba(0,0,0,0.4)' : '#000'};
     display: flex;
     justify-content: space-between;
     align-items: center;
