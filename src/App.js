@@ -8,19 +8,18 @@ import useLocalStorage from './hooks/useLocalStorage';
 
 import Layout from './components/common/Layout/Layout';
 import Welcome from './pages/Welcome/Welcome';
-// import Home from './pages/Home/Home';
-import MovieDetails from './pages/MovieDetails/MovieDetails';
 import SignIn from './pages/SignIn/SignIn';
 import NotFound from './pages/NotFound/NotFound';
-import Profile from './pages/Profile/Profile';
 import AuthGuard from './components/common/AuthGuard/AuthGuard';
 import GuestGuard from './components/common/GuestGuard/GuestGuard';
-import Movies from './pages/Movies/Movies';
-import Shows from './pages/Shows/Shows';
-import ShowDetails from './pages/ShowDetails/ShowDetails';
-import MyList from './pages/MyList/MyList';
 import Spinner from './components/common/Spinner/Spinner';
 const Home = lazy(() => import('./pages/Home/Home'));
+const Movies = lazy(() => import('./pages/Movies/Movies'));
+const MovieDetails = lazy(() => import('./pages/MovieDetails/MovieDetails'));
+const ShowDetails = lazy(() => import('./pages/ShowDetails/ShowDetails'));
+const Profile = lazy(() => import('./pages/Profile/Profile'));
+const MyList = lazy(() => import('./pages/MyList/MyList'));
+const Shows = lazy(() => import('./pages/Shows/Shows'));
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -56,15 +55,54 @@ function App() {
                             }
                         />
 
-                        <Route path="/movies" element={<Movies />} />
-                        <Route path="/tv-shows" element={<Shows />} />
+                        <Route
+                            path="/movies"
+                            element={
+                                <Suspense fallback={<Spinner />}>
+                                    <Movies />
+                                </Suspense>
+                            }
+                        />
+                        <Route
+                            path="/tv-shows"
+                            element={
+                                <Suspense fallback={<Spinner />}>
+                                    <Shows />
+                                </Suspense>
+                            }
+                        />
                         <Route
                             path="/movie/:movieId"
-                            element={<MovieDetails />}
+                            element={
+                                <Suspense fallback={<Spinner />}>
+                                    <MovieDetails />
+                                </Suspense>
+                            }
                         />
-                        <Route path="/show/:showId" element={<ShowDetails />} />
-                        <Route path="/profile" element={<Profile />} />
-                        <Route path="/my-list" element={<MyList />} />
+                        <Route
+                            path="/show/:showId"
+                            element={
+                                <Suspense fallback={<Spinner />}>
+                                    <ShowDetails />
+                                </Suspense>
+                            }
+                        />
+                        <Route
+                            path="/profile"
+                            element={
+                                <Suspense fallback={<Spinner />}>
+                                    <Profile />
+                                </Suspense>
+                            }
+                        />
+                        <Route
+                            path="/my-list"
+                            element={
+                                <Suspense fallback={<Spinner />}>
+                                    <MyList />
+                                </Suspense>
+                            }
+                        />
                     </Route>
                     <Route path="/*" element={<NotFound />} />
                 </Routes>
