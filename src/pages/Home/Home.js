@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { requests } from '../../utils/requests';
 
 import Hero from '../../components/Hero/Hero';
@@ -8,7 +8,6 @@ import Spinner from '../../components/common/Spinner/Spinner';
 import MovieCollection from '../../components/MovieCollection/MovieCollection';
 
 function Home() {
-    const navigate = useNavigate();
     const { isLoading, error, data } = useQuery('randomMovie', () => {
         return fetch(requests.requestUpcoming)
             .then((res) => res.json())
@@ -21,7 +20,7 @@ function Home() {
 
     if (error) {
         // TODO!: Show notifaction for this error then redirect to home page.
-        return navigate('/');
+        return <Navigate to="/" />;
     }
 
     return (

@@ -18,7 +18,7 @@ function Welcome() {
     };
 
     const navigateToHome = () => {
-        navigation('/home');
+        navigation('/sign-in');
     };
 
     return (
@@ -275,6 +275,10 @@ const HeroContainer = styled.section`
     width: 100%;
     height: 800px;
     margin-bottom: 12px;
+
+    @media screen and (max-width: 400px) {
+        height: 550px;
+    }
 `;
 
 const HeroImage = styled.img`
@@ -297,6 +301,26 @@ const HeroContent = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    @media screen and (max-width: 1600px) {
+        width: 80%;
+        text-align: center;
+    }
+
+    @media screen and (max-width: 1024px) {
+        width: 80%;
+        text-align: center;
+    }
+
+    @media screen and (max-width: 700px) {
+        width: 80%;
+        text-align: center;
+    }
+
+    @media screen and (max-width: 400px) {
+        width: 80%;
+        text-align: center;
+    }
 `;
 
 const Title = styled.h1`
@@ -305,6 +329,10 @@ const Title = styled.h1`
     text-align: ${(props) => (props.center ? 'center' : '')};
     padding-top: ${(props) => (props.center ? '25px' : '')};
     margin-bottom: ${(props) => (props.center ? '25px' : '')};
+
+    @media screen and (max-width: 400px) {
+        font-size: 22px;
+    }
 `;
 
 const HeroSubTitle = styled.h3`
@@ -312,6 +340,10 @@ const HeroSubTitle = styled.h3`
     font-size: 24px;
     text-align: center;
     margin-bottom: 20px;
+
+    @media screen and (max-width: 400px) {
+        font-size: 18px;
+    }
 `;
 
 const Question = styled.p`
@@ -334,6 +366,16 @@ const Input = styled.input`
         -webkit-box-shadow: -1px -1px 22px 2px #158cba;
         -moz-box-shadow: -1px -1px 22px 2px #158cba;
     }
+
+    @media screen and (max-width: 700px) {
+        width: 100%;
+        margin-bottom: 25px;
+    }
+
+    @media screen and (max-width: 400px) {
+        width: 100%;
+        margin-bottom: 25px;
+    }
 `;
 
 const Button = styled.button`
@@ -345,6 +387,22 @@ const Button = styled.button`
     font-size: 18px;
     vertical-align: middle;
     cursor: pointer;
+
+    @media screen and (max-width: 700px) {
+        width: 50%;
+        margin-bottom: 25px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    @media screen and (max-width: 400px) {
+        width: 50%;
+        margin-bottom: 25px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
 `;
 
 const FeatureContainer = styled.section`
@@ -352,6 +410,14 @@ const FeatureContainer = styled.section`
     display: flex;
     justify-content: space-between;
     margin-bottom: 12px;
+
+    @media screen and (max-width: 700px) {
+        flex-direction: column;
+    }
+
+    @media screen and (max-width: 400px) {
+        flex-direction: column;
+    }
 `;
 
 const FeatureContent = styled.div`
@@ -361,14 +427,40 @@ const FeatureContent = styled.div`
     text-align: center;
     margin-top: 5%;
     width: 50%;
+
+    @media screen and (max-width: 700px) {
+        width: 100%;
+        margin: unset;
+    }
+
+    @media screen and (max-width: 400px) {
+        width: 100%;
+        margin: unset;
+    }
 `;
 
 const FeatureTitle = styled.h2`
     font-size: 42px;
+
+    @media screen and (max-width: 700px) {
+        font-size: 32px;
+    }
+
+    @media screen and (max-width: 400px) {
+        font-size: 32px;
+    }
 `;
 
 const FeatureText = styled.p`
     font-size: 22px;
+
+    @media screen and (max-width: 700px) {
+        font-size: 18px;
+    }
+
+    @media screen and (max-width: 400px) {
+        font-size: 18px;
+    }
 `;
 
 const FeatureImage = styled.img`
@@ -379,6 +471,24 @@ const FeatureImage = styled.img`
     margin-right: ${(props) => (props.mright ? '100px' : '')};
     height: 400px;
     object-fit: cover;
+
+    @media screen and (max-width: 1024px) {
+        width: 50%;
+        margin-left: auto;
+        margin-right: 20px;
+    }
+
+    @media screen and (max-width: 700px) {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media screen and (max-width: 400px) {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 `;
 
 const FaqContainer = styled.section`
@@ -389,6 +499,18 @@ const FaqContainer = styled.section`
 const FaqList = styled.ul`
     width: 55%;
     margin: 0 auto 52px auto;
+
+    @media screen and (max-width: 1024px) {
+        width: 80%;
+    }
+
+    @media screen and (max-width: 700px) {
+        width: 90%;
+    }
+
+    @media screen and (max-width: 400px) {
+        width: 100%;
+    }
 `;
 
 const FaqListItem = styled.li`
@@ -422,4 +544,16 @@ const InputContainer = styled.div`
     width: 45%;
     margin: 0 auto;
     padding-bottom: 60px;
+
+    @media screen and (max-width: 1024px) {
+        width: 80%;
+    }
+
+    @media screen and (max-width: 700px) {
+        width: 90%;
+    }
+
+    @media screen and (max-width: 400px) {
+        width: 90%;
+    }
 `;

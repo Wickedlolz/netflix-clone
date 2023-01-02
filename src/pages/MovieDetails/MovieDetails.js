@@ -59,6 +59,8 @@ function MovieDetails() {
             });
     };
 
+    const handleMarkAsFavourite = () => {};
+
     if (isLoading && movieCredits.isLoading && recomemndedMovies.isLoading) {
         return <Spinner />;
     }
@@ -112,7 +114,10 @@ function MovieDetails() {
                                 >
                                     <i className="fa-solid fa-plus"></i>
                                 </Button>
-                                <Button action="true">
+                                <Button
+                                    action="true"
+                                    onClick={handleMarkAsFavourite}
+                                >
                                     <i className="fa-regular fa-thumbs-up"></i>
                                 </Button>
                             </>
