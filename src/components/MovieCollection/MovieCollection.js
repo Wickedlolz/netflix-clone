@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Carousel from 'react-multi-carousel';
 
@@ -8,14 +8,13 @@ import MovieItem from '../MovieItem/MovieItem';
 import 'react-multi-carousel/lib/styles.css';
 
 function MovieCollection({ fetchUrl, title }) {
-    const navigation = useNavigate();
     const { isLoading, error, data } = useQuery(`${title}Data`, () =>
         fetch(fetchUrl).then((res) => res.json())
     );
 
     if (error) {
         // TODO!: Show error in notification
-        return navigation('/');
+        return <Navigate to="/" />;
     }
 
     return (

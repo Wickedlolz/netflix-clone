@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { show } from '../../features/modal/modalSlice';
 import { notify } from '../../features/notification/notificationSlice';
@@ -16,14 +16,13 @@ function MovieDetails() {
     const { id, username, sessionToken, isAuth } = useSelector(
         (state) => state.auth
     );
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const {
         isLoading,
         error,
         data: movie,
-    } = useQuery(`movieDetails${movieId}`, () => {
+    } = useQuery(['movieDetails', movieId], () => {
         return fetch(requests.requestMovieById(movieId)).then((res) =>
             res.json()
         );
@@ -35,7 +34,7 @@ function MovieDetails() {
         );
     });
 
-    const recomemndedMovies = useQuery(`recomemndedMovies${movieId}`, () => {
+    const recomemndedMovies = useQuery(['recomemndedMovies', movieId], () => {
         return fetch(requests.requestRecomendedMovies(movieId)).then((res) =>
             res.json()
         );
@@ -66,7 +65,7 @@ function MovieDetails() {
 
     if (error && movieCredits.error && recomemndedMovies.error) {
         dispatch(notify({ message: 'Something went wrong.', type: 'error' }));
-        navigate('/home');
+        return <Navigate to="/" />;
     }
 
     return (

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { requests } from '../../utils/requests';
 import { show } from '../../features/modal/modalSlice';
 import { notify } from '../../features/notification/notificationSlice';
+import * as showService from '../../services/showService';
 
 import MoreDetails from '../../components/MoreDetails/MoreDetails';
 import Spinner from '../../components/common/Spinner/Spinner';
@@ -22,7 +23,7 @@ function ShowDetails() {
         isLoading,
         error,
         data: tvShow,
-    } = useQuery(`showDetails${showId}`, () => {
+    } = useQuery(['showDetails', showId], () => {
         return fetch(requests.requestShowById(showId)).then((res) =>
             res.json()
         );
@@ -34,19 +35,26 @@ function ShowDetails() {
         );
     });
 
-    const recomemndedShows = useQuery(`recomemndedShows${showId}`, () => {
+    const recomemndedShows = useQuery(['recomemndedShows', showId], () => {
         return fetch(requests.requestRecomendedShows(showId)).then((res) =>
             res.json()
         );
     });
 
-    console.log(tvShow);
-
     const handleOpenModal = () => {
         dispatch(show({ videos: tvShow?.videos }));
     };
 
-    const handleAddToWatchlist = () => {};
+    const handleAddToWatchlist = () => {
+        showService.addToWatchlist(id, sessionToken, showId).then((result) => {
+            dispatch(
+                notify({
+                    message: 'Successfully added to My List.',
+                    type: 'success',
+                })
+            );
+        });
+    };
 
     if (isLoading && showCredits.isLoading && recomemndedShows.isLoading) {
         return <Spinner />;

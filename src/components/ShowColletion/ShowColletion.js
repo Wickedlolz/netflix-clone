@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
 import Carousel from 'react-multi-carousel';
@@ -8,14 +8,13 @@ import styled from 'styled-components';
 import 'react-multi-carousel/lib/styles.css';
 
 function ShowColletion({ fetchUrl, title }) {
-    const navigation = useNavigate();
     const { isLoading, error, data } = useQuery(`${title}Data`, () => {
         return fetch(fetchUrl).then((res) => res.json());
     });
 
     if (error) {
         // TODO!: Show error in notification
-        return navigation('/');
+        return <Navigate to="/" />;
     }
 
     return (
@@ -82,4 +81,8 @@ const Container = styled.article``;
 
 const Title = styled.h3`
     padding-left: 20px;
+`;
+
+const Text = styled.p`
+    padding: 10px 0px 0px 10px;
 `;

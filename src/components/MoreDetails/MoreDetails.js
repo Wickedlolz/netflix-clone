@@ -18,7 +18,7 @@ function MoreDetails({ item, cast, recomended }) {
                 </ListItem>
                 <ListItem>
                     <SubTitle>Released</SubTitle>
-                    <Text>{item?.release_date}</Text>
+                    <Text>{item?.release_date || item?.first_air_date}</Text>
                 </ListItem>
                 <ListItem>
                     <SubTitle>Status</SubTitle>
