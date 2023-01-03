@@ -75,12 +75,20 @@ const Title = styled.h1`
     font-weight: bold;
     margin-bottom: 20px;
     cursor: default;
+
+    @media screen and (max-width: 400px) {
+        width: 100%;
+    }
 `;
 
 const Overview = styled.p`
     width: 45%;
     margin-bottom: 25px;
     cursor: default;
+
+    @media screen and (max-width: 400px) {
+        width: 100%;
+    }
 `;
 
 const Play = styled.button`

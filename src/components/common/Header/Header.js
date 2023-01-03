@@ -13,8 +13,6 @@ function Header() {
         return () => (window.onscroll = null);
     };
 
-    console.log(isScrolled);
-
     return (
         <HeaderContainer isScrolled={isScrolled}>
             <HeaderLogoLink to="/">

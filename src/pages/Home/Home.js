@@ -1,4 +1,6 @@
 import { Navigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { notify } from '../../features/notification/notificationSlice';
 import { requests } from '../../utils/requests';
 
 import Hero from '../../components/Hero/Hero';
@@ -8,6 +10,7 @@ import Spinner from '../../components/common/Spinner/Spinner';
 import MovieCollection from '../../components/MovieCollection/MovieCollection';
 
 function Home() {
+    const dispatch = useDispatch();
     const { isLoading, error, data } = useQuery('randomMovie', () => {
         return fetch(requests.requestUpcoming)
             .then((res) => res.json())
@@ -19,7 +22,12 @@ function Home() {
     });
 
     if (error) {
-        // TODO!: Show notifaction for this error then redirect to home page.
+        dispatch(
+            notify({
+                message: error.status_message,
+                type: 'error',
+            })
+        );
         return <Navigate to="/" />;
     }
 

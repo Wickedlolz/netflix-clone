@@ -184,6 +184,10 @@ const Layout = styled.div`
     bottom: 0px;
 
     background-color: rgba(0, 0, 0, 0.5);
+
+    @media screen and (max-width: 400px) {
+        background-color: rgba(0, 0, 0, 1);
+    }
 `;
 
 const FormWrapper = styled.div`

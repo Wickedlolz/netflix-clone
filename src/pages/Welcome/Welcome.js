@@ -17,7 +17,7 @@ function Welcome() {
         setQuestions((state) => ({ ...state, [question]: !state[question] }));
     };
 
-    const navigateToHome = () => {
+    const navigateToSignIn = () => {
         navigation('/sign-in');
     };
 
@@ -38,7 +38,7 @@ function Welcome() {
                         your membership.
                     </Question>
                     <Input type="email" placeholder="Email address"></Input>
-                    <Button onClick={navigateToHome}>
+                    <Button onClick={navigateToSignIn}>
                         Get Started <i className="fa-solid fa-angle-right"></i>
                     </Button>
                 </HeroContent>
@@ -367,6 +367,11 @@ const Input = styled.input`
         -moz-box-shadow: -1px -1px 22px 2px #158cba;
     }
 
+    @media screen and (max-width: 1024px) {
+        width: 100%;
+        margin-bottom: 25px;
+    }
+
     @media screen and (max-width: 700px) {
         width: 100%;
         margin-bottom: 25px;
@@ -387,6 +392,18 @@ const Button = styled.button`
     font-size: 18px;
     vertical-align: middle;
     cursor: pointer;
+
+    @media screen and (max-width: 1600px) {
+        width: 20%;
+    }
+
+    @media screen and (max-width: 1024px) {
+        width: 30%;
+        margin-bottom: 25px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
 
     @media screen and (max-width: 700px) {
         width: 50%;
@@ -544,6 +561,10 @@ const InputContainer = styled.div`
     width: 45%;
     margin: 0 auto;
     padding-bottom: 60px;
+
+    @media screen and (max-width: 1600px) {
+        width: 60%;
+    }
 
     @media screen and (max-width: 1024px) {
         width: 80%;
