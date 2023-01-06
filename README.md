@@ -12,6 +12,10 @@
 -   [Material UI](https://mui.com/)
 -   [TMDB API](https://developers.themoviedb.org/3/getting-started/introduction)
 
+### Responsive Design
+
+-   Using Desktop first approach first
+
 ## Descripiton
 
 Application consuming entirely [TMDB API](https://developers.themoviedb.org/3/getting-started/introduction). Every add to watchlist ot mark as favourite affect to your real account, for example you add some movie in your watch list in application you will see it in My List page and in [TMDB Site](https://www.themoviedb.org/) where you logged with the same account you can see the same movie where you add in watchlist in this application.

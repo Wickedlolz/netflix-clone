@@ -81,6 +81,11 @@ const Container = styled.section`
     margin: 100px auto;
     border-radius: 14px;
     overflow: hidden;
+
+    @media screen and (max-width: 400px) {
+        width: 100%;
+        height: 500px;
+    }
 `;
 
 const CloseButton = styled.button`

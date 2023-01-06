@@ -49,6 +49,10 @@ const Container = styled.div`
     /* grid-template-columns: 33.333% 33.333% 33.333%; */
     grid-template-columns: 25% 25% 25% 25%;
     gap: 10px;
+
+    @media screen and (max-width: 400px) {
+        display: unset;
+    }
 `;
 
 const Title = styled.h2`

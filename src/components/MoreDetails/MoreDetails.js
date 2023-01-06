@@ -57,12 +57,24 @@ const ContentList = styled.ul`
     display: grid;
     grid-template-columns: 33.333% 33.333% 33.333%;
     row-gap: ${(props) => (props.cast ? '2px' : '20px')};
+
+    @media screen and (max-width: 400px) {
+        display: unset;
+    }
 `;
 
 const ListItem = styled.li``;
 
 const SubTitle = styled.h4`
     color: #c3bfbf;
+
+    @media screen and (max-width: 400px) {
+        font-size: 20px;
+    }
 `;
 
-const Text = styled.p``;
+const Text = styled.p`
+    @media screen and (max-width: 400px) {
+        font-size: 13px;
+    }
+`;

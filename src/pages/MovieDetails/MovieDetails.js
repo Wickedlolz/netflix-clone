@@ -165,6 +165,10 @@ const Preview = styled.section`
     position: relative;
     height: 700px;
     margin-bottom: 25px;
+
+    @media screen and (max-width: 400px) {
+        height: 900px;
+    }
 `;
 
 const Image = styled.img`
@@ -195,6 +199,15 @@ const Content = styled.div`
     left: 2%;
 
     transform: translateY(-50%);
+
+    @media screen and (max-width: 400px) {
+        height: 500px;
+        top: unset;
+        left: unset;
+        bottom: 0px;
+        background-color: rgba(0, 0, 0, 0.6);
+        transform: unset;
+    }
 `;
 
 const Title = styled.h1`
@@ -203,12 +216,36 @@ const Title = styled.h1`
     font-weight: bold;
     margin-bottom: 20px;
     cursor: default;
+
+    @media screen and (max-width: 900px) {
+        width: 90%;
+    }
+
+    @media screen and (max-width: 600px) {
+        width: 100%;
+    }
+
+    @media screen and (max-width: 400px) {
+        width: 100%;
+    }
 `;
 
 const InfoWrapper = styled.div`
     width: 45%;
     color: #c3bfbf;
     margin-bottom: 15px;
+
+    @media screen and (max-width: 900px) {
+        width: 90%;
+    }
+
+    @media screen and (max-width: 600px) {
+        width: 100%;
+    }
+
+    @media screen and (max-width: 400px) {
+        width: 100%;
+    }
 `;
 
 const Spacer = styled.span`
@@ -225,6 +262,18 @@ const InfoText = styled.span`
 const Actions = styled.div`
     width: 45%;
     margin-bottom: 25px;
+
+    @media screen and (max-width: 900px) {
+        width: 90%;
+    }
+
+    @media screen and (max-width: 600px) {
+        width: 100%;
+    }
+
+    @media screen and (max-width: 400px) {
+        width: 100%;
+    }
 `;
 
 const Button = styled.button`
@@ -250,6 +299,18 @@ const Overview = styled.p`
     width: 45%;
     margin-bottom: 25px;
     cursor: default;
+
+    @media screen and (max-width: 900px) {
+        width: 90%;
+    }
+
+    @media screen and (max-width: 600px) {
+        width: 100%;
+    }
+
+    @media screen and (max-width: 400px) {
+        width: 100%;
+    }
 `;
 
 const Starring = styled.p``;

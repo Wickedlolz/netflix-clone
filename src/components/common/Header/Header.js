@@ -71,11 +71,19 @@ const Navigation = styled.nav`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media screen and (max-width: 400px) {
+        justify-content: flex-end;
+    }
 `;
 
 const List = styled.ul`
     display: flex;
     gap: 15px;
+
+    @media screen and (max-width: 400px) {
+        display: none;
+    }
 `;
 
 const ItemLink = styled(NavLink)`
@@ -95,6 +103,10 @@ const HeaderLogo = styled.img`
 
 const StyledProfileLink = styled(Link)`
     margin-right: 20px;
+
+    @media screen and (max-width: 400px) {
+        margin-right: unset;
+    }
 `;
 
 const Avatar = styled.img`
