@@ -51,7 +51,7 @@ const Container = styled.div`
     gap: 10px;
 
     @media screen and (max-width: 400px) {
-        display: unset;
+        grid-template-columns: 50% 50%;
     }
 `;
 

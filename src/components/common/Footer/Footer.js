@@ -55,6 +55,14 @@ const List = styled.ul`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     row-gap: 10px;
+
+    @media screen and (max-width: 600px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media screen and (max-width: 400px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
 `;
 
 const ListItem = styled.li`
