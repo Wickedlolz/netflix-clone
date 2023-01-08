@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../features/auth/authSlice';
 import { notify } from '../../features/notification/notificationSlice';
-import { createSession, getAccount } from '../../services/userService';
+import * as userService from '../../services/userService';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { requests } from '../../utils/requests';
 import styled from 'styled-components';
@@ -59,8 +59,10 @@ function SignIn() {
             const loginData = await loginResponse.json();
 
             if (loginData.success) {
-                const sessionId = await createSession(loginData.request_token);
-                const user = await getAccount(sessionId);
+                const sessionId = await userService.createSession(
+                    loginData.request_token
+                );
+                const user = await userService.getAccount(sessionId);
 
                 dispatch(
                     setUser({

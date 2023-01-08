@@ -72,6 +72,10 @@ const Navigation = styled.nav`
     justify-content: space-between;
     align-items: center;
 
+    @media screen and (max-width: 600px) {
+        justify-content: flex-end;
+    }
+
     @media screen and (max-width: 400px) {
         justify-content: flex-end;
     }
@@ -80,6 +84,10 @@ const Navigation = styled.nav`
 const List = styled.ul`
     display: flex;
     gap: 15px;
+
+    @media screen and (max-width: 600px) {
+        display: none;
+    }
 
     @media screen and (max-width: 400px) {
         display: none;
