@@ -77,14 +77,13 @@ export default TrailerModal;
 const Container = styled.section`
     position: relative;
     width: 70%;
-    height: 600px;
+    height: 80vh;
     margin: 100px auto;
     border-radius: 14px;
     overflow: hidden;
 
     @media screen and (max-width: 400px) {
         width: 100%;
-        height: 500px;
     }
 `;
 
