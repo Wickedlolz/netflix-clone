@@ -1,5 +1,6 @@
-import { Navigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import { useDispatch } from 'react-redux';
+import { notify } from '../../features/notification/notificationSlice';
 import Carousel from 'react-multi-carousel';
 
 import styled from 'styled-components';
@@ -8,13 +9,18 @@ import MovieItem from '../MovieItem/MovieItem';
 import 'react-multi-carousel/lib/styles.css';
 
 function MovieCollection({ fetchUrl, title }) {
+    const dispatch = useDispatch();
     const { isLoading, error, data } = useQuery(`${title}Data`, () =>
         fetch(fetchUrl).then((res) => res.json())
     );
 
     if (error) {
-        // TODO!: Show error in notification
-        return <Navigate to="/" />;
+        dispatch(
+            notify({
+                message: error.message,
+                type: 'error',
+            })
+        );
     }
 
     return (

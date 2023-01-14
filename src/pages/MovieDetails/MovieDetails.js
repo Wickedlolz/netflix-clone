@@ -86,7 +86,7 @@ function MovieDetails() {
                     <Title>{movie?.title || movie?.original_title}</Title>
                     <InfoWrapper>
                         <InfoText>
-                            {movie?.release_date.substring(0, 4)}
+                            {movie?.release_date?.substring(0, 4)}
                         </InfoText>
                         <Spacer></Spacer>
                         <InfoText rating>
@@ -96,7 +96,7 @@ function MovieDetails() {
                         <InfoText>{movie?.runtime}m</InfoText>
                         <Spacer></Spacer>
                         <InfoText>
-                            {movie?.genres.map((g) => g.name).join(' ')}
+                            {movie?.genres?.map((g) => g.name).join(' ')}
                         </InfoText>
                     </InfoWrapper>
                     <Actions>
@@ -132,7 +132,7 @@ function MovieDetails() {
                             <StarringText>Starring</StarringText>:{' '}
                             {movieCredits?.data?.cast
                                 .slice(0, 3)
-                                .map((c) => c.name)
+                                .map((c) => c?.name)
                                 .join(', ')}
                         </Starring>
                     )}

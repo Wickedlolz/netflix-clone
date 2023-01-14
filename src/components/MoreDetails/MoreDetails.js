@@ -8,12 +8,12 @@ function MoreDetails({ item, cast, recomended }) {
             <ContentList>
                 <ListItem>
                     <SubTitle>Genres</SubTitle>
-                    <Text>{item?.genres.map((g) => g.name).join(' ')}</Text>
+                    <Text>{item?.genres?.map((g) => g?.name).join(' ')}</Text>
                 </ListItem>
                 <ListItem>
                     <SubTitle>Languages</SubTitle>
                     <Text>
-                        {item?.spoken_languages.map((g) => g.name).join(' ')}
+                        {item?.spoken_languages?.map((g) => g?.name).join(' ')}
                     </Text>
                 </ListItem>
                 <ListItem>
@@ -26,13 +26,13 @@ function MoreDetails({ item, cast, recomended }) {
                 </ListItem>
                 <ListItem>
                     <SubTitle>Production Companies</SubTitle>
-                    <Text>{item?.production_companies[0].name}</Text>
+                    <Text>{item?.production_companies[0]?.name}</Text>
                 </ListItem>
             </ContentList>
             <SubTitle>Cast</SubTitle>
             <ContentList cast>
                 {cast?.map((person, i) => (
-                    <ListItem key={i}>{person.name}</ListItem>
+                    <ListItem key={i}>{person?.name}</ListItem>
                 ))}
             </ContentList>
         </Container>

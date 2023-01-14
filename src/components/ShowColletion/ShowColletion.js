@@ -1,5 +1,6 @@
-import { Navigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import { useDispatch } from 'react-redux';
+import { notify } from '../../features/notification/notificationSlice';
 
 import Carousel from 'react-multi-carousel';
 import Spinner from '../common/Spinner/Spinner';
@@ -8,13 +9,18 @@ import styled from 'styled-components';
 import 'react-multi-carousel/lib/styles.css';
 
 function ShowColletion({ fetchUrl, title }) {
+    const dispatch = useDispatch();
     const { isLoading, error, data } = useQuery(`${title}Data`, () => {
         return fetch(fetchUrl).then((res) => res.json());
     });
 
     if (error) {
-        // TODO!: Show error in notification
-        return <Navigate to="/" />;
+        dispatch(
+            notify({
+                message: error.message,
+                type: 'error',
+            })
+        );
     }
 
     return (
@@ -81,8 +87,4 @@ const Container = styled.article``;
 
 const Title = styled.h3`
     padding-left: 20px;
-`;
-
-const Text = styled.p`
-    padding: 10px 0px 0px 10px;
 `;

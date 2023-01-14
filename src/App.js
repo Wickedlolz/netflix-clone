@@ -21,6 +21,7 @@ const ShowDetails = lazy(() => import('./pages/ShowDetails/ShowDetails'));
 const Profile = lazy(() => import('./pages/Profile/Profile'));
 const MyList = lazy(() => import('./pages/MyList/MyList'));
 const Shows = lazy(() => import('./pages/Shows/Shows'));
+const Latest = lazy(() => import('./pages/Latest/Latest'));
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -102,6 +103,14 @@ function App() {
                                 element={
                                     <Suspense fallback={<Spinner />}>
                                         <MyList />
+                                    </Suspense>
+                                }
+                            />
+                            <Route
+                                path="/latest"
+                                element={
+                                    <Suspense fallback={<Spinner />}>
+                                        <Latest />
                                     </Suspense>
                                 }
                             />
