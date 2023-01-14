@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -55,6 +56,14 @@ function ShowDetails() {
             );
         });
     };
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
+    }, [showId]);
 
     if (isLoading && showCredits.isLoading && recomemndedShows.isLoading) {
         return <Spinner />;

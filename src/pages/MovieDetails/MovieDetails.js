@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useParams, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -60,6 +61,14 @@ function MovieDetails() {
     };
 
     const handleMarkAsFavourite = () => {};
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
+    }, [movieId]);
 
     if (isLoading && movieCredits.isLoading && recomemndedMovies.isLoading) {
         return <Spinner />;
