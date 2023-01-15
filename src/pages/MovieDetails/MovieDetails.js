@@ -210,7 +210,6 @@ const Content = styled.div`
     transform: translateY(-50%);
 
     @media screen and (max-width: 400px) {
-        height: 500px;
         top: unset;
         left: unset;
         bottom: 0px;
