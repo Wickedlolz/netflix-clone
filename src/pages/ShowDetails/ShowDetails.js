@@ -42,6 +42,14 @@ function ShowDetails() {
         );
     });
 
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
+    }, [showId]);
+
     const handleOpenModal = () => {
         dispatch(show({ videos: tvShow?.videos }));
     };
@@ -56,14 +64,6 @@ function ShowDetails() {
             );
         });
     };
-
-    useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth',
-        });
-    }, [showId]);
 
     if (isLoading && showCredits.isLoading && recomemndedShows.isLoading) {
         return <Spinner />;

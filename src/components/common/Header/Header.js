@@ -6,6 +6,7 @@ import styled from 'styled-components';
 function Header() {
     const isAuth = useSelector((state) => state.auth.isAuth);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [toggleMenuOpen, setToggleMenuOpen] = useState(false);
 
     window.onscroll = () => {
         setIsScrolled(!(window.pageYOffset === 0));
@@ -35,6 +36,34 @@ function Header() {
                                 loading="lazy"
                             ></Avatar>
                         </StyledProfileLink>
+                        <ToggleMenu
+                            onClick={() => setToggleMenuOpen((state) => !state)}
+                        >
+                            <i class="fa-solid fa-caret-down"></i>
+                            {toggleMenuOpen && (
+                                <ToggleMenuList>
+                                    <ToggleMenuItem>
+                                        <ItemLink to="/home">Home</ItemLink>
+                                    </ToggleMenuItem>
+                                    <ToggleMenuItem>
+                                        <ItemLink to="/tv-shows">
+                                            TV Shows
+                                        </ItemLink>
+                                    </ToggleMenuItem>
+                                    <ToggleMenuItem>
+                                        <ItemLink to="/movies">Movies</ItemLink>
+                                    </ToggleMenuItem>
+                                    <ToggleMenuItem>
+                                        <ItemLink to="/latest">Latest</ItemLink>
+                                    </ToggleMenuItem>
+                                    <ToggleMenuItem>
+                                        <ItemLink to="/my-list">
+                                            My List
+                                        </ItemLink>
+                                    </ToggleMenuItem>
+                                </ToggleMenuList>
+                            )}
+                        </ToggleMenu>
                     </Navigation>
                 </>
             )}
@@ -122,7 +151,7 @@ const Avatar = styled.img`
     height: 35px;
     object-fit: cover;
 
-    margin-right: 20px;
+    margin-right: 10px;
 `;
 
 const SignInButton = styled(Link)`
@@ -133,3 +162,24 @@ const SignInButton = styled(Link)`
     padding: 5px 20px;
     border-radius: 5px;
 `;
+
+const ToggleMenu = styled.div`
+    display: none;
+    color: #fff;
+    margin-right: 10px;
+
+    @media screen and (max-width: 400px) {
+        display: inline-block;
+    }
+`;
+
+const ToggleMenuList = styled.ul`
+    position: absolute;
+    right: 0px;
+    background-color: #000;
+    margin: 20px 0px 0px 0px;
+    width: 120px;
+    padding: 5px 10px;
+`;
+
+const ToggleMenuItem = styled.li``;

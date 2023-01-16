@@ -79,6 +79,10 @@ const Container = styled.section`
     height: 550px;
     margin: 0 auto;
     color: #fff;
+
+    @media screen and (max-width: 400px) {
+        width: 100%;
+    }
 `;
 
 const Title = styled.h1`

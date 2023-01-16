@@ -41,6 +41,14 @@ function MovieDetails() {
         );
     });
 
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
+    }, [movieId]);
+
     const handleOpenModal = () => {
         dispatch(show({ videos: movie?.videos }));
     };
@@ -61,14 +69,6 @@ function MovieDetails() {
     };
 
     const handleMarkAsFavourite = () => {};
-
-    useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth',
-        });
-    }, [movieId]);
 
     if (isLoading && movieCredits.isLoading && recomemndedMovies.isLoading) {
         return <Spinner />;
