@@ -39,29 +39,38 @@ function Header() {
                         <ToggleMenu
                             onClick={() => setToggleMenuOpen((state) => !state)}
                         >
-                            <i class="fa-solid fa-caret-down"></i>
+                            {!toggleMenuOpen && (
+                                <i class="fa-solid fa-caret-down"></i>
+                            )}
                             {toggleMenuOpen && (
-                                <ToggleMenuList>
-                                    <ToggleMenuItem>
-                                        <ItemLink to="/home">Home</ItemLink>
-                                    </ToggleMenuItem>
-                                    <ToggleMenuItem>
-                                        <ItemLink to="/tv-shows">
-                                            TV Shows
-                                        </ItemLink>
-                                    </ToggleMenuItem>
-                                    <ToggleMenuItem>
-                                        <ItemLink to="/movies">Movies</ItemLink>
-                                    </ToggleMenuItem>
-                                    <ToggleMenuItem>
-                                        <ItemLink to="/latest">Latest</ItemLink>
-                                    </ToggleMenuItem>
-                                    <ToggleMenuItem>
-                                        <ItemLink to="/my-list">
-                                            My List
-                                        </ItemLink>
-                                    </ToggleMenuItem>
-                                </ToggleMenuList>
+                                <>
+                                    <i class="fa-solid fa-caret-up"></i>
+                                    <ToggleMenuList>
+                                        <ToggleMenuItem>
+                                            <ItemLink to="/home">Home</ItemLink>
+                                        </ToggleMenuItem>
+                                        <ToggleMenuItem>
+                                            <ItemLink to="/tv-shows">
+                                                TV Shows
+                                            </ItemLink>
+                                        </ToggleMenuItem>
+                                        <ToggleMenuItem>
+                                            <ItemLink to="/movies">
+                                                Movies
+                                            </ItemLink>
+                                        </ToggleMenuItem>
+                                        <ToggleMenuItem>
+                                            <ItemLink to="/latest">
+                                                Latest
+                                            </ItemLink>
+                                        </ToggleMenuItem>
+                                        <ToggleMenuItem>
+                                            <ItemLink to="/my-list">
+                                                My List
+                                            </ItemLink>
+                                        </ToggleMenuItem>
+                                    </ToggleMenuList>
+                                </>
                             )}
                         </ToggleMenu>
                     </Navigation>
