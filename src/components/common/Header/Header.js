@@ -40,11 +40,11 @@ function Header() {
                             onClick={() => setToggleMenuOpen((state) => !state)}
                         >
                             {!toggleMenuOpen && (
-                                <i class="fa-solid fa-caret-down"></i>
+                                <i className="fa-solid fa-caret-down"></i>
                             )}
                             {toggleMenuOpen && (
                                 <>
-                                    <i class="fa-solid fa-caret-up"></i>
+                                    <i className="fa-solid fa-caret-up"></i>
                                     <ToggleMenuList>
                                         <ToggleMenuItem>
                                             <ItemLink to="/home">Home</ItemLink>
