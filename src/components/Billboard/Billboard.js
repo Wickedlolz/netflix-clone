@@ -23,6 +23,10 @@ const Content = styled.div`
     top: 50%;
     transform: translateY(-50%);
     margin-left: 30px;
+
+    @media screen and (max-width: 400px) {
+        margin-left: unset;
+    }
 `;
 
 const Title = styled.h2`
@@ -36,4 +40,8 @@ const Text = styled.p`
     font-weight: bold;
     font-size: 18px;
     cursor: default;
+
+    @media screen and (max-width: 400px) {
+        width: unset;
+    }
 `;
