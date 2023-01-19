@@ -14,7 +14,7 @@
 
 ### Responsive Design
 
--   Using Desktop first approach first
+-   Using Desktop first approach
 
 ## Descripiton
 

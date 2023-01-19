@@ -43,4 +43,6 @@ export const requests = {
         `https://api.themoviedb.org/3/account/${accountId}/watchlist/tv?api_key=${API_KEY}&language=en-US&session_id=${sessionId}&sort_by=created_at.asc&page=1`,
     requestPixar: `${baseUrl}/list/9095?api_key=${API_KEY}&language=en-US`,
     requestCars: `${baseUrl}/list/7067605?api_key=${API_KEY}&language=en-US&sort_by=vote_average.asc`,
+    requestFavouriteMovies: (accountId, sessionId) =>
+        `https://api.themoviedb.org/3/account/${accountId}/favorite/movies?api_key=${API_KEY}&session_id=${sessionId}&language=en-US&sort_by=created_at.asc&page=1`,
 };

@@ -11,6 +11,7 @@ import styled from 'styled-components';
 import Spinner from '../../components/common/Spinner/Spinner';
 import MoreDetails from '../../components/MoreDetails/MoreDetails';
 import MoreLikeThis from '../../components/MoreLikeThis/MoreLikeThis';
+import { useIsMovieLiked } from 'src/hooks/useIsMovieLiked';
 
 function MovieDetails() {
     const { movieId } = useParams();
@@ -41,6 +42,8 @@ function MovieDetails() {
         );
     });
 
+    const isLiked = useIsMovieLiked(id, sessionToken, movieId);
+
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -68,7 +71,20 @@ function MovieDetails() {
             });
     };
 
-    const handleMarkAsFavourite = () => {};
+    const handleMarkAsFavourite = () => {
+        movieService
+            .markAsFavourite(id, sessionToken, movieId)
+            .then((result) => {
+                if (result.success) {
+                    dispatch(
+                        notify({
+                            message: 'Successfully added to Favourites.',
+                            type: 'success',
+                        })
+                    );
+                }
+            });
+    };
 
     if (isLoading && movieCredits.isLoading && recomemndedMovies.isLoading) {
         return <Spinner />;
@@ -123,17 +139,20 @@ function MovieDetails() {
                                 >
                                     <i className="fa-solid fa-plus"></i>
                                 </Button>
-                                <Button
-                                    action="true"
-                                    onClick={handleMarkAsFavourite}
-                                >
-                                    <i className="fa-regular fa-thumbs-up"></i>
-                                </Button>
+                                {!isLiked ? (
+                                    <Button
+                                        action="true"
+                                        onClick={handleMarkAsFavourite}
+                                    >
+                                        <i className="fa-regular fa-thumbs-up"></i>
+                                    </Button>
+                                ) : (
+                                    <Button action="true">
+                                        <i className="fa-regular fa-thumbs-down"></i>
+                                    </Button>
+                                )}
                             </>
                         )}
-                        {/* <Button>
-                            <i className="fa-regular fa-thumbs-down"></i>
-                        </Button> */}
                     </Actions>
                     <Overview>{movie?.overview}</Overview>
                     {!movieCredits.isLoading && (
