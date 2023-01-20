@@ -31,7 +31,7 @@ If you don't have account in application when click sign up will redirect you to
 -   [ ] Add unit tests
 -   [ ] Add CI for unit tests
 -   [ ] Add search functionality
--   [ ] Add mark as favourite for show
+-   [x] Add mark as favourite for show
 
 ## Live [Demo](https://netflix-clone-taupe-one.vercel.app/)
 
