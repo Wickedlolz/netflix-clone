@@ -1,11 +1,16 @@
 import { requests } from '../../utils/requests';
-import ShowColletion from '../../components/ShowColletion/ShowColletion';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet-async';
+
+import ShowColletion from '../../components/ShowColletion/ShowColletion';
 import Billboard from '../../components/Billboard/Billboard';
 
 function Shows() {
     return (
         <Container>
+            <Helmet>
+                <title>Shows | Netflix</title>
+            </Helmet>
             <Billboard
                 title="TV Shows"
                 text="These days, the small screen has some very big things to

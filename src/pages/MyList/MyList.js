@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { requests } from '../../utils/requests';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet-async';
 
 import Billboard from '../../components/Billboard/Billboard';
 import MovieCollection from '../../components/MovieCollection/MovieCollection';
@@ -11,6 +12,9 @@ function MyList() {
 
     return (
         <Container>
+            <Helmet>
+                <title>My List | Netflix</title>
+            </Helmet>
             <Billboard title="My List" />
             <MovieCollection
                 title="Movies"

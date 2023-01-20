@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { setUser } from './features/auth/authSlice';
+import { HelmetProvider } from 'react-helmet-async';
 import useLocalStorage from './hooks/useLocalStorage';
 
 import Layout from './components/common/Layout/Layout';
@@ -41,84 +42,86 @@ function App() {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <Layout>
-                <ErrorBoundary>
-                    <Routes>
-                        <Route element={<GuestGuard />}>
-                            <Route path="/" element={<Welcome />} />
-                            <Route path="/sign-in" element={<SignIn />} />
-                        </Route>
-                        <Route element={<AuthGuard />}>
-                            <Route
-                                path="/home"
-                                element={
-                                    <Suspense fallback={<Spinner />}>
-                                        <Home />
-                                    </Suspense>
-                                }
-                            />
+            <HelmetProvider>
+                <Layout>
+                    <ErrorBoundary>
+                        <Routes>
+                            <Route element={<GuestGuard />}>
+                                <Route path="/" element={<Welcome />} />
+                                <Route path="/sign-in" element={<SignIn />} />
+                            </Route>
+                            <Route element={<AuthGuard />}>
+                                <Route
+                                    path="/home"
+                                    element={
+                                        <Suspense fallback={<Spinner />}>
+                                            <Home />
+                                        </Suspense>
+                                    }
+                                />
 
-                            <Route
-                                path="/movies"
-                                element={
-                                    <Suspense fallback={<Spinner />}>
-                                        <Movies />
-                                    </Suspense>
-                                }
-                            />
-                            <Route
-                                path="/tv-shows"
-                                element={
-                                    <Suspense fallback={<Spinner />}>
-                                        <Shows />
-                                    </Suspense>
-                                }
-                            />
-                            <Route
-                                path="/movie/:movieId"
-                                element={
-                                    <Suspense fallback={<Spinner />}>
-                                        <MovieDetails />
-                                    </Suspense>
-                                }
-                            />
-                            <Route
-                                path="/show/:showId"
-                                element={
-                                    <Suspense fallback={<Spinner />}>
-                                        <ShowDetails />
-                                    </Suspense>
-                                }
-                            />
-                            <Route
-                                path="/profile"
-                                element={
-                                    <Suspense fallback={<Spinner />}>
-                                        <Profile />
-                                    </Suspense>
-                                }
-                            />
-                            <Route
-                                path="/my-list"
-                                element={
-                                    <Suspense fallback={<Spinner />}>
-                                        <MyList />
-                                    </Suspense>
-                                }
-                            />
-                            <Route
-                                path="/latest"
-                                element={
-                                    <Suspense fallback={<Spinner />}>
-                                        <Latest />
-                                    </Suspense>
-                                }
-                            />
-                        </Route>
-                        <Route path="/*" element={<NotFound />} />
-                    </Routes>
-                </ErrorBoundary>
-            </Layout>
+                                <Route
+                                    path="/movies"
+                                    element={
+                                        <Suspense fallback={<Spinner />}>
+                                            <Movies />
+                                        </Suspense>
+                                    }
+                                />
+                                <Route
+                                    path="/tv-shows"
+                                    element={
+                                        <Suspense fallback={<Spinner />}>
+                                            <Shows />
+                                        </Suspense>
+                                    }
+                                />
+                                <Route
+                                    path="/movie/:movieId"
+                                    element={
+                                        <Suspense fallback={<Spinner />}>
+                                            <MovieDetails />
+                                        </Suspense>
+                                    }
+                                />
+                                <Route
+                                    path="/show/:showId"
+                                    element={
+                                        <Suspense fallback={<Spinner />}>
+                                            <ShowDetails />
+                                        </Suspense>
+                                    }
+                                />
+                                <Route
+                                    path="/profile"
+                                    element={
+                                        <Suspense fallback={<Spinner />}>
+                                            <Profile />
+                                        </Suspense>
+                                    }
+                                />
+                                <Route
+                                    path="/my-list"
+                                    element={
+                                        <Suspense fallback={<Spinner />}>
+                                            <MyList />
+                                        </Suspense>
+                                    }
+                                />
+                                <Route
+                                    path="/latest"
+                                    element={
+                                        <Suspense fallback={<Spinner />}>
+                                            <Latest />
+                                        </Suspense>
+                                    }
+                                />
+                            </Route>
+                            <Route path="/*" element={<NotFound />} />
+                        </Routes>
+                    </ErrorBoundary>
+                </Layout>
+            </HelmetProvider>
         </QueryClientProvider>
     );
 }

@@ -2,6 +2,7 @@ import { Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { notify } from '../../features/notification/notificationSlice';
 import { requests } from '../../utils/requests';
+import { Helmet } from 'react-helmet-async';
 
 import Hero from '../../components/Hero/Hero';
 import styled from 'styled-components';
@@ -33,6 +34,9 @@ function Home() {
 
     return (
         <Container>
+            <Helmet>
+                <title>Home | Netflix</title>
+            </Helmet>
             {isLoading && <Spinner />}
             {!isLoading && <Hero movie={data} />}
             <MovieCollection

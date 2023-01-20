@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { requests } from 'src/utils/requests';
+import { Helmet } from 'react-helmet-async';
 
 import Billboard from 'src/components/Billboard/Billboard';
 import MovieCollection from 'src/components/MovieCollection/MovieCollection';
@@ -7,6 +8,9 @@ import MovieCollection from 'src/components/MovieCollection/MovieCollection';
 function Latest() {
     return (
         <Container>
+            <Helmet>
+                <title>Only on Netflix | Netflix</title>
+            </Helmet>
             <Billboard
                 title="Only on Netflix"
                 text="Netflix is the home of amazing original programming that you can't find anywhere else. Movies, TV shows, specials and more, all tailored specifically to you."

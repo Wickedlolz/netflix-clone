@@ -1,4 +1,4 @@
-## Netflix Clone
+# Netflix Clone
 
 ### Technologies and libs:
 
@@ -11,6 +11,7 @@
 -   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT96UvaEAOHFysZ6Bm7yOC9ir12aQzNK20IWxWPZmSbdrtL09_lplIIHsRWsY1xygcL2BU&usqp=CAU" width="12" heigth="12" alt="react player" /> [react-player](https://www.npmjs.com/package/react-player)
 -   <img src="https://mui.com/static/logo.png" width="12" heigth="12" alt="material ui" /> [Material UI](https://mui.com/)
 -   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tmdb.new.logo.svg/2560px-Tmdb.new.logo.svg.png" width="12" heigth="12" alt="tmdb" /> [TMDB API](https://developers.themoviedb.org/3/getting-started/introduction)
+-   <img src="https://miro.medium.com/max/600/1*t4Em-3T6FZqHzZxxUH22wg.jpeg" width="12" heigth="12" alt="react helmet async" /> [React Helmet Async](https://github.com/staylor/react-helmet-async#readme)
 
 ### Responsive Design
 
@@ -20,12 +21,15 @@
 
 Application consuming entirely [TMDB API](https://developers.themoviedb.org/3/getting-started/introduction). Every add to watchlist or mark as favourite affect to your real account, for example you add some movie in your watch list in application you will see it in My List page and in [TMDB Site](https://www.themoviedb.org/) where you logged with the same account you can see the same movie where you add in watchlist in this application.
 
+If you don't have account in application when click sign up will redirect you to [TMDB Site](https://www.themoviedb.org/) to make account, after you finish registration back to application and sign in with your new account.
+
 `NOTE: You can mark as favourite but cannot reverse, API not have endpoint for this action.`
 
 ## TODO
 
 -   [ ] Finish responsive design
 -   [ ] Add unit tests
+-   [ ] Add CI for unit tests
 -   [ ] Add search functionality
 -   [ ] Add mark as favourite for show
 
@@ -34,5 +38,5 @@ Application consuming entirely [TMDB API](https://developers.themoviedb.org/3/ge
 ## How to run it manually?
 
 1.  Clone repo where you want.
-2.  Go to root folder of repo and `npm install` for installing all dependacyes.
-3.  Run `npm start` to run application in dev mode, app will open automaticly new tab in your browser.
+2.  Go to root folder of repo and `npm install` or `yarn install` for installing all dependacyes.
+3.  Run `npm start` to run application in dev mode, app will open automatically new tab in your browser.

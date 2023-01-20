@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet-async';
 
 function Welcome() {
     const navigation = useNavigate();
@@ -23,6 +24,9 @@ function Welcome() {
 
     return (
         <Container>
+            <Helmet>
+                <title>Welcome | Netflix</title>
+            </Helmet>
             <HeroContainer>
                 <HeroImage
                     loading="lazy"

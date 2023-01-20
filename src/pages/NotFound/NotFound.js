@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet-async';
 
 function NotFound() {
     return (
         <Container>
+            <Helmet>
+                <title>Lost your way? | Netflix</title>
+            </Helmet>
             <Image
                 src="/assets/bg-lost-in-space.png"
                 alt="Lost in Space"

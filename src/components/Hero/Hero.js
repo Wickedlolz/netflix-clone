@@ -86,6 +86,14 @@ const Overview = styled.p`
     margin-bottom: 25px;
     cursor: default;
 
+    @media screen and (max-width: 800px) {
+        width: 70%;
+    }
+
+    @media screen and (max-width: 600px) {
+        width: 80%;
+    }
+
     @media screen and (max-width: 400px) {
         width: 100%;
     }

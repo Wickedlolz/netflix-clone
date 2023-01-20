@@ -5,13 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { show } from '../../features/modal/modalSlice';
 import { notify } from '../../features/notification/notificationSlice';
 import { requests } from '../../utils/requests';
+import { useIsMovieLiked } from 'src/hooks/useIsMovieLiked';
 import * as movieService from '../../services/movieService';
+import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 
 import Spinner from '../../components/common/Spinner/Spinner';
 import MoreDetails from '../../components/MoreDetails/MoreDetails';
 import MoreLikeThis from '../../components/MoreLikeThis/MoreLikeThis';
-import { useIsMovieLiked } from 'src/hooks/useIsMovieLiked';
 
 function MovieDetails() {
     const { movieId } = useParams();
@@ -97,6 +98,11 @@ function MovieDetails() {
 
     return (
         <Container>
+            <Helmet>
+                <title>
+                    {movie?.title || movie?.original_title || 'Movie'} | Netflix
+                </title>
+            </Helmet>
             <Preview>
                 <Image
                     loading="lazy"
@@ -258,7 +264,7 @@ const Title = styled.h1`
 `;
 
 const InfoWrapper = styled.div`
-    width: 45%;
+    width: 70%;
     color: #c3bfbf;
     margin-bottom: 15px;
 
@@ -287,7 +293,7 @@ const InfoText = styled.span`
 `;
 
 const Actions = styled.div`
-    width: 45%;
+    width: 70%;
     margin-bottom: 25px;
 
     @media screen and (max-width: 900px) {

@@ -150,6 +150,10 @@ const HeaderLogo = styled.img`
 const StyledProfileLink = styled(Link)`
     margin-right: 20px;
 
+    @media screen and (max-width: 600px) {
+        margin-right: unset;
+    }
+
     @media screen and (max-width: 400px) {
         margin-right: unset;
     }
@@ -177,6 +181,10 @@ const ToggleMenu = styled.div`
     color: #fff;
     margin-right: 10px;
 
+    @media screen and (max-width: 600px) {
+        display: inline-block;
+    }
+
     @media screen and (max-width: 400px) {
         display: inline-block;
     }
@@ -185,6 +193,7 @@ const ToggleMenu = styled.div`
 const ToggleMenuList = styled.ul`
     position: absolute;
     right: 0px;
+    border-radius: 6px;
     background-color: #000;
     margin: 20px 0px 0px 0px;
     width: 120px;

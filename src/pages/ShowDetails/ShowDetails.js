@@ -6,6 +6,7 @@ import { requests } from '../../utils/requests';
 import { show } from '../../features/modal/modalSlice';
 import { notify } from '../../features/notification/notificationSlice';
 import * as showService from '../../services/showService';
+import { Helmet } from 'react-helmet-async';
 
 import MoreDetails from '../../components/MoreDetails/MoreDetails';
 import Spinner from '../../components/common/Spinner/Spinner';
@@ -76,6 +77,11 @@ function ShowDetails() {
 
     return (
         <Container>
+            <Helmet>
+                <title>
+                    {tvShow?.name || tvShow?.original_name || 'Show'} | Netflix
+                </title>
+            </Helmet>
             <Preview>
                 <Image
                     loading="lazy"
@@ -151,7 +157,7 @@ function ShowDetails() {
             <MoreDetails
                 item={tvShow}
                 cast={showCredits?.data?.cast}
-                recomended={recomemndedShows.data?.results}
+                isShow={true}
             />
             <MoreLikeThis
                 recomended={recomemndedShows.data?.results}

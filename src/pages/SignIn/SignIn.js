@@ -8,6 +8,8 @@ import * as userService from '../../services/userService';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { requests } from '../../utils/requests';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet-async';
+
 import Spinner from '../../components/common/Spinner/Spinner';
 
 function SignIn() {
@@ -98,6 +100,9 @@ function SignIn() {
 
     return (
         <Container>
+            <Helmet>
+                <title>Sign In | Netflix</title>
+            </Helmet>
             <Image src="/assets/bg-img.jpg"></Image>
             <Layout></Layout>
             <FormWrapper>

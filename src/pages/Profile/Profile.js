@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import * as userService from '../../services/userService';
 import styled from 'styled-components';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import { Helmet } from 'react-helmet-async';
 
 function Profile() {
     const username = useSelector((state) => state.auth.username);
@@ -35,6 +36,9 @@ function Profile() {
 
     return (
         <Container>
+            <Helmet>
+                <title>Profile | Netflix</title>
+            </Helmet>
             <Title>Profile</Title>
             <Box>
                 <ProfilePic
