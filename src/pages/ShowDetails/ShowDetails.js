@@ -294,7 +294,7 @@ const Button = styled.button`
     font-size: ${(props) => (props.action ? '18px' : '')};
     padding: ${(props) =>
         props.primary || props.secondary ? '8px 25px' : '7px 14px'};
-    color: ${(props) => (props.secondary || props.action ? '#fff' : '')};
+    color: ${(props) => (props.secondary || props.action ? '#fff' : '#000')};
     border: ${(props) => (props.action ? '1px solid #fff' : 'none')};
     outline: none;
     border-radius: ${(props) =>

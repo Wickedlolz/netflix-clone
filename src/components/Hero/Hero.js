@@ -106,6 +106,7 @@ const Play = styled.button`
     border: none;
     outline: none;
     border-radius: 5px;
+    color: #000;
     cursor: pointer;
 `;
 
