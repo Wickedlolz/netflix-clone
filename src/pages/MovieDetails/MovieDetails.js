@@ -87,11 +87,11 @@ function MovieDetails() {
             });
     };
 
-    if (isLoading && movieCredits.isLoading && recomemndedMovies.isLoading) {
+    if (isLoading || movieCredits.isLoading || recomemndedMovies.isLoading) {
         return <Spinner />;
     }
 
-    if (error && movieCredits.error && recomemndedMovies.error) {
+    if (error || movieCredits.error || recomemndedMovies.error) {
         dispatch(notify({ message: 'Something went wrong.', type: 'error' }));
         return <Navigate to="/" />;
     }
