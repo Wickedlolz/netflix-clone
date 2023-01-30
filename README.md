@@ -25,6 +25,8 @@ If you don't have account in application when click sign up will redirect you to
 
 `NOTE: You can mark as favourite but cannot reverse, API not have endpoint for this action.`
 
+**I dont own any rights from Netflix as a company, this platform was made for educational purposes and to be shown as a piece of portfolio. There are not any commercial or monetary purposes.**
+
 ## TODO
 
 -   [ ] Finish responsive design
