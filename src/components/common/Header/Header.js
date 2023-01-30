@@ -7,6 +7,7 @@ function Header() {
     const isAuth = useSelector((state) => state.auth.isAuth);
     const [isScrolled, setIsScrolled] = useState(false);
     const [toggleMenuOpen, setToggleMenuOpen] = useState(false);
+    const [toggleSearch, setToggleSearch] = useState(false);
 
     window.onscroll = () => {
         setIsScrolled(!(window.pageYOffset === 0));
@@ -31,9 +32,20 @@ function Header() {
                             <ItemLink to="/my-list">My List</ItemLink>
                         </List>
                         <StyledContainerWithSearch>
-                            <SearchButton>
+                            <SearchButton
+                                onClick={() =>
+                                    setToggleSearch((state) => !state)
+                                }
+                            >
                                 <i className="fa-solid fa-magnifying-glass"></i>
                             </SearchButton>
+                            {toggleSearch && (
+                                <SearchInput
+                                    placeholder="Search..."
+                                    type="search"
+                                    name="search"
+                                />
+                            )}
                             <StyledProfileLink to="/profile">
                                 <Avatar
                                     src="/assets/netflix-avatar.png"
@@ -44,9 +56,6 @@ function Header() {
                         <ToggleMenu
                             onClick={() => setToggleMenuOpen((state) => !state)}
                         >
-                            {!toggleMenuOpen && (
-                                <i className="fa-solid fa-caret-down"></i>
-                            )}
                             {toggleMenuOpen && (
                                 <>
                                     <i className="fa-solid fa-caret-up"></i>
@@ -217,4 +226,16 @@ const StyledContainerWithSearch = styled.div`
 const SearchButton = styled.p`
     cursor: pointer;
     color: #fff;
+`;
+
+const SearchInput = styled.input`
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    caret-color: #e63631;
+
+    &::placeholder {
+        color: #fff;
+        padding-left: 5px;
+    }
 `;
