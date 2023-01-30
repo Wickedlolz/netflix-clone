@@ -30,12 +30,17 @@ function Header() {
                             <ItemLink to="/latest">Latest</ItemLink>
                             <ItemLink to="/my-list">My List</ItemLink>
                         </List>
-                        <StyledProfileLink to="/profile">
-                            <Avatar
-                                src="/assets/netflix-avatar.png"
-                                loading="lazy"
-                            ></Avatar>
-                        </StyledProfileLink>
+                        <StyledContainerWithSearch>
+                            <SearchButton>
+                                <i className="fa-solid fa-magnifying-glass"></i>
+                            </SearchButton>
+                            <StyledProfileLink to="/profile">
+                                <Avatar
+                                    src="/assets/netflix-avatar.png"
+                                    loading="lazy"
+                                ></Avatar>
+                            </StyledProfileLink>
+                        </StyledContainerWithSearch>
                         <ToggleMenu
                             onClick={() => setToggleMenuOpen((state) => !state)}
                         >
@@ -201,3 +206,15 @@ const ToggleMenuList = styled.ul`
 `;
 
 const ToggleMenuItem = styled.li``;
+
+const StyledContainerWithSearch = styled.div`
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+`;
+
+const SearchButton = styled.p`
+    cursor: pointer;
+    color: #fff;
+`;
