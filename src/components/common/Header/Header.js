@@ -1,18 +1,36 @@
-import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { useDebounce } from 'src/hooks/useDebounce';
 
 function Header() {
     const isAuth = useSelector((state) => state.auth.isAuth);
     const [isScrolled, setIsScrolled] = useState(false);
     const [toggleMenuOpen, setToggleMenuOpen] = useState(false);
     const [toggleSearch, setToggleSearch] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const navigate = useNavigate();
+    const debounceValue = useDebounce(searchQuery, 500);
 
     window.onscroll = () => {
         setIsScrolled(!(window.pageYOffset === 0));
 
         return () => (window.onscroll = null);
+    };
+
+    useEffect(() => {
+        if (debounceValue.length === 0) {
+            navigate('/home');
+        }
+
+        if (debounceValue.length > 0) {
+            navigate('/search?t=' + decodeURIComponent(debounceValue));
+        }
+    }, [debounceValue]);
+
+    const handleSearchQueryChange = (event) => {
+        setSearchQuery(event.target.value);
     };
 
     return (
@@ -44,6 +62,8 @@ function Header() {
                                     placeholder="Search..."
                                     type="search"
                                     name="search"
+                                    value={searchQuery}
+                                    onChange={handleSearchQueryChange}
                                 />
                             )}
                             <StyledProfileLink to="/profile">
@@ -56,6 +76,9 @@ function Header() {
                         <ToggleMenu
                             onClick={() => setToggleMenuOpen((state) => !state)}
                         >
+                            {!toggleMenuOpen && (
+                                <i className="fa-solid fa-caret-down"></i>
+                            )}
                             {toggleMenuOpen && (
                                 <>
                                     <i className="fa-solid fa-caret-up"></i>
