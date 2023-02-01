@@ -130,7 +130,7 @@ const HeaderContainer = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1000;
+    z-index: 2000;
 `;
 
 const HeaderLogoLink = styled(Link)`
@@ -216,7 +216,7 @@ const SignInButton = styled(Link)`
 const ToggleMenu = styled.div`
     display: none;
     color: #fff;
-    margin-right: 10px;
+    margin-right: 25px;
 
     @media screen and (max-width: 600px) {
         display: inline-block;
@@ -260,5 +260,12 @@ const SearchInput = styled.input`
     &::placeholder {
         color: #fff;
         padding-left: 5px;
+    }
+
+    @media screen and (max-width: 800px) {
+        position: absolute;
+        top: 70px;
+        right: 25px;
+        background-color: #000;
     }
 `;
