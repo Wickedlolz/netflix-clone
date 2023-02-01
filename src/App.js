@@ -15,6 +15,7 @@ import AuthGuard from './components/common/AuthGuard/AuthGuard';
 import GuestGuard from './components/common/GuestGuard/GuestGuard';
 import Spinner from './components/common/Spinner/Spinner';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import Search from './pages/Search/Search';
 const Home = lazy(() => import('./pages/Home/Home'));
 const Movies = lazy(() => import('./pages/Movies/Movies'));
 const MovieDetails = lazy(() => import('./pages/MovieDetails/MovieDetails'));
@@ -116,6 +117,7 @@ function App() {
                                         </Suspense>
                                     }
                                 />
+                                <Route path="/search" element={<Search />} />
                             </Route>
                             <Route path="/*" element={<NotFound />} />
                         </Routes>

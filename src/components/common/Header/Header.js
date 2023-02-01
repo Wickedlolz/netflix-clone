@@ -1,17 +1,36 @@
-import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { useDebounce } from 'src/hooks/useDebounce';
 
 function Header() {
     const isAuth = useSelector((state) => state.auth.isAuth);
     const [isScrolled, setIsScrolled] = useState(false);
     const [toggleMenuOpen, setToggleMenuOpen] = useState(false);
+    const [toggleSearch, setToggleSearch] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const navigate = useNavigate();
+    const debounceValue = useDebounce(searchQuery, 500);
 
     window.onscroll = () => {
         setIsScrolled(!(window.pageYOffset === 0));
 
         return () => (window.onscroll = null);
+    };
+
+    useEffect(() => {
+        if (debounceValue.length === 0) {
+            navigate('/home');
+        }
+
+        if (debounceValue.length > 0) {
+            navigate('/search?t=' + decodeURIComponent(debounceValue));
+        }
+    }, [debounceValue]);
+
+    const handleSearchQueryChange = (event) => {
+        setSearchQuery(event.target.value);
     };
 
     return (
@@ -30,12 +49,30 @@ function Header() {
                             <ItemLink to="/latest">Latest</ItemLink>
                             <ItemLink to="/my-list">My List</ItemLink>
                         </List>
-                        <StyledProfileLink to="/profile">
-                            <Avatar
-                                src="/assets/netflix-avatar.png"
-                                loading="lazy"
-                            ></Avatar>
-                        </StyledProfileLink>
+                        <StyledContainerWithSearch>
+                            <SearchButton
+                                onClick={() =>
+                                    setToggleSearch((state) => !state)
+                                }
+                            >
+                                <i className="fa-solid fa-magnifying-glass"></i>
+                            </SearchButton>
+                            {toggleSearch && (
+                                <SearchInput
+                                    placeholder="Search..."
+                                    type="search"
+                                    name="search"
+                                    value={searchQuery}
+                                    onChange={handleSearchQueryChange}
+                                />
+                            )}
+                            <StyledProfileLink to="/profile">
+                                <Avatar
+                                    src="/assets/netflix-avatar.png"
+                                    loading="lazy"
+                                ></Avatar>
+                            </StyledProfileLink>
+                        </StyledContainerWithSearch>
                         <ToggleMenu
                             onClick={() => setToggleMenuOpen((state) => !state)}
                         >
@@ -201,3 +238,27 @@ const ToggleMenuList = styled.ul`
 `;
 
 const ToggleMenuItem = styled.li``;
+
+const StyledContainerWithSearch = styled.div`
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+`;
+
+const SearchButton = styled.p`
+    cursor: pointer;
+    color: #fff;
+`;
+
+const SearchInput = styled.input`
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    caret-color: #e63631;
+
+    &::placeholder {
+        color: #fff;
+        padding-left: 5px;
+    }
+`;
