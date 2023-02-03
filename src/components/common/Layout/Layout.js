@@ -23,7 +23,7 @@ function Layout({ children }) {
                 handleCloseModal={handleCloseModal}
                 videos={videos}
             />
-            {{ ...children }}
+            <main>{{ ...children }}</main>
             <Notification />
             <Footer />
         </>

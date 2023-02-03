@@ -201,7 +201,8 @@ const Preview = styled.section`
     margin-bottom: 25px;
 
     @media screen and (max-width: 400px) {
-        height: 900px;
+        position: unset;
+        height: unset;
     }
 `;
 
@@ -210,6 +211,10 @@ const Image = styled.img`
     height: 100%;
     object-fit: cover;
     object-position: center center;
+
+    @media screen and (max-width: 400px) {
+        height: 300px;
+    }
 `;
 
 const Layout = styled.div`
@@ -225,6 +230,10 @@ const Layout = styled.div`
         rgba(0, 0, 0, 0.4) 37%,
         rgba(0, 0, 0, 0) 100%
     );
+
+    @media screen and (max-width: 400px) {
+        display: none;
+    }
 `;
 
 const Content = styled.div`
@@ -235,10 +244,10 @@ const Content = styled.div`
     transform: translateY(-50%);
 
     @media screen and (max-width: 400px) {
+        position: unset;
         top: unset;
         left: unset;
         bottom: 0px;
-        background-color: rgba(0, 0, 0, 0.6);
         transform: unset;
     }
 `;

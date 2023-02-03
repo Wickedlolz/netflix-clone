@@ -37,6 +37,7 @@ function Header() {
         <HeaderContainer isScrolled={isScrolled}>
             <HeaderLogoLink to="/">
                 <HeaderLogo src="/assets/logo.png"></HeaderLogo>
+                <HeaderSmallLogo src="/assets/Netflix_Symbol_RGB.png"></HeaderSmallLogo>
             </HeaderLogoLink>
             {!isAuth && <SignInButton to="/sign-in">Sign In</SignInButton>}
             {isAuth && (
@@ -139,6 +140,11 @@ const HeaderLogoLink = styled(Link)`
     vertical-align: middle;
     width: 160px;
     height: 70px;
+
+    @media screen and (max-width: 400px) {
+        width: 80px;
+        height: 100px;
+    }
 `;
 
 const Navigation = styled.nav`
@@ -182,6 +188,20 @@ const HeaderLogo = styled.img`
     width: 180px;
     height: 70px;
     object-fit: cover;
+
+    @media screen and (max-width: 400px) {
+        display: none;
+    }
+`;
+
+const HeaderSmallLogo = styled.img`
+    width: 100%;
+    height: 100%;
+    display: none;
+
+    @media screen and (max-width: 400px) {
+        display: block;
+    }
 `;
 
 const StyledProfileLink = styled(Link)`
