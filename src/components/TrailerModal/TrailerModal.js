@@ -110,6 +110,7 @@ const PlayPauseButton = styled.button`
     padding: 5px 40px;
     font-size: 18px;
     border-radius: 14px;
+    color: #000;
     cursor: pointer;
 `;
 
