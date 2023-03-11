@@ -31,7 +31,7 @@ function ShowDetails() {
         );
     });
 
-    const showCredits = useQuery('showCredits', () => {
+    const showCredits = useQuery(['showCredits', showId], () => {
         return fetch(requests.requestShowCredits(showId)).then((res) =>
             res.json()
         );

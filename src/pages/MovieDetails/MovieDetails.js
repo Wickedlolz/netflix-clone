@@ -31,7 +31,7 @@ function MovieDetails() {
         );
     });
 
-    const movieCredits = useQuery('movieCredits', () => {
+    const movieCredits = useQuery(['movieCredits', movieId], () => {
         return fetch(requests.requestMovieCredits(movieId)).then((res) =>
             res.json()
         );

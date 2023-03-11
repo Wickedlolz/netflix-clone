@@ -35,7 +35,7 @@ const queryClient = new QueryClient({
 
 function App() {
     const dispatch = useDispatch();
-    const [state, setItem] = useLocalStorage('session_id', undefined);
+    const [state] = useLocalStorage('session_id', undefined);
 
     if (state) {
         dispatch(setUser({ user: { ...state } }));
