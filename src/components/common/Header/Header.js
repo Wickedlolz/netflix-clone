@@ -20,14 +20,14 @@ function Header() {
     };
 
     useEffect(() => {
-        if (debounceValue.length === 0) {
-            navigate('/home');
-        }
+        // if (debounceValue.length === 0) {
+        //     navigate('/home');
+        // }
 
         if (debounceValue.length > 0) {
             navigate('/search?t=' + decodeURIComponent(debounceValue));
         }
-    }, [debounceValue]);
+    }, [debounceValue, navigate]);
 
     const handleSearchQueryChange = (event) => {
         setSearchQuery(event.target.value);
