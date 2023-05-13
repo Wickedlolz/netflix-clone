@@ -16,9 +16,7 @@ import MoreLikeThis from '../../components/MoreLikeThis/MoreLikeThis';
 
 function MovieDetails() {
     const { movieId } = useParams();
-    const { id, username, sessionToken, isAuth } = useSelector(
-        (state) => state.auth
-    );
+    const { id, sessionToken, isAuth } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
     const {
