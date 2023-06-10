@@ -24,6 +24,9 @@ function MoreLikeThis({ recomended, title }) {
                                 }
                                 alt={s?.title || s?.original_title}
                             ></Image>
+                            <MovieTitle>
+                                {s.title || s.original_title}
+                            </MovieTitle>
                         </StyledLink>
                     ))}
 
@@ -70,10 +73,16 @@ const StyledLink = styled(Link)`
 
 const Image = styled.img`
     width: 100%;
-    height: 100%;
+    height: 80%;
     object-fit: cover;
 `;
 
 const Text = styled.p`
     grid-column: ${(props) => (props.sp ? 'span 2' : '')};
+`;
+
+const MovieTitle = styled.h3`
+    text-align: center;
+    font-size: 1rem;
+    overflow: hidden;
 `;

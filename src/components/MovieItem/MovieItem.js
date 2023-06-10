@@ -12,7 +12,6 @@ function MovieItem({ movie }) {
                 }
                 alt={movie?.title || movie?.original_title}
             ></Image>
-            <Layout></Layout>
             <Title>{movie?.title || movie?.original_title}</Title>
         </Container>
     );
@@ -21,7 +20,6 @@ function MovieItem({ movie }) {
 export default MovieItem;
 
 const Container = styled(Link)`
-    /* position: relative; */
     color: #fff;
     text-decoration: none;
     width: 100%;
@@ -36,31 +34,12 @@ const Container = styled(Link)`
 
 const Image = styled.img`
     width: 100%;
-    height: 100%;
+    height: 70%;
     object-fit: cover;
 `;
 
-const Layout = styled.div`
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    opacity: 0;
-
-    transition: opacity 300ms ease-in-out;
-
-    background-color: rgba(0, 0, 0, 0.5);
-`;
-
 const Title = styled.h3`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    opacity: 0;
     text-align: center;
-
-    transition: opacity 300ms ease-in-out;
-
-    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    overflow: hidden;
 `;
