@@ -25,7 +25,7 @@ function MoreLikeThis({ recomended, title }) {
                                 alt={s?.title || s?.original_title}
                             ></Image>
                             <MovieTitle>
-                                {s.title || s.original_title}
+                                {s.title || s.original_title || s.original_name}
                             </MovieTitle>
                         </StyledLink>
                     ))}
