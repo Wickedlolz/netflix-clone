@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../features/auth/authSlice';
-import { notify } from '../../features/notification/notificationSlice';
+import { logout } from '../../store/slices/authSlice';
+import { notify } from '../../store/slices/notificationSlice';
 import { useNavigate } from 'react-router-dom';
 import * as userService from '../../services/userService';
 import styled from 'styled-components';

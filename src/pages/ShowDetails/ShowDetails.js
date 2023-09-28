@@ -3,8 +3,8 @@ import { useQuery } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { requests } from '../../utils/requests';
-import { show } from '../../features/modal/modalSlice';
-import { notify } from '../../features/notification/notificationSlice';
+import { show } from '../../store/slices/modalSlice';
+import { notify } from '../../store/slices/notificationSlice';
 import * as showService from '../../services/showService';
 import { Helmet } from 'react-helmet-async';
 

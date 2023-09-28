@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useDispatch } from 'react-redux';
-import { setUser } from './features/auth/authSlice';
+import { setUser } from './store/slices/authSlice';
 import { HelmetProvider } from 'react-helmet-async';
 import useLocalStorage from './hooks/useLocalStorage';
 import AppRoutes from './routes/AppRoutes';

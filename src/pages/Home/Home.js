@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { notify } from '../../features/notification/notificationSlice';
+import { notify } from '../../store/slices/notificationSlice';
 import { requests } from '../../utils/requests';
 import { Helmet } from 'react-helmet-async';
 

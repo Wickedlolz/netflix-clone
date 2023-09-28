@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import { useDispatch } from 'react-redux';
-import { notify } from '../../features/notification/notificationSlice';
+import { notify } from '../../store/slices/notificationSlice';
 
 import Carousel from 'react-multi-carousel';
 import Spinner from '../common/Spinner/Spinner';

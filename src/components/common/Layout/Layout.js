@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { hide } from '../../../features/modal/modalSlice';
+import { hide } from '../../../store/slices/modalSlice';
 
 import TrailerModal from '../../TrailerModal/TrailerModal';
 import Footer from '../Footer/Footer';

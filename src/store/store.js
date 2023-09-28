@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from '../features/auth/authSlice';
-import modalReducer from '../features/modal/modalSlice';
-import notificationReducer from '../features/notification/notificationSlice';
+import authReducer from './slices/authSlice';
+import modalReducer from './slices/modalSlice';
+import notificationReducer from './slices/notificationSlice';
 
 export default configureStore({
     reducer: {
