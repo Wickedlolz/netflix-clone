@@ -1,12 +1,10 @@
 import { useEffect } from 'react';
-import { useQuery } from 'react-query';
 import { useParams, Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useFirebaseContext } from 'src/context/FirebaseContext';
+import { useMovieDetails } from 'src/hooks/useMovieDetails';
 import { show } from '../../store/slices/modalSlice';
 import { notify } from '../../store/slices/notificationSlice';
-import { requests } from '../../utils/requests';
-import { useIsMovieLiked } from 'src/hooks/useIsMovieLiked';
-import * as movieService from '../../services/movieService';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 
@@ -16,32 +14,12 @@ import MoreLikeThis from '../../components/MoreLikeThis/MoreLikeThis';
 
 function MovieDetails() {
     const { movieId } = useParams();
-    const { id, sessionToken, isAuth } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+    const { user } = useFirebaseContext();
+    const { isLoading, error, movie, movieCredits, recomemndedMovies } =
+        useMovieDetails(movieId);
 
-    const {
-        isLoading,
-        error,
-        data: movie,
-    } = useQuery(['movieDetails', movieId], () => {
-        return fetch(requests.requestMovieById(movieId)).then((res) =>
-            res.json()
-        );
-    });
-
-    const movieCredits = useQuery(['movieCredits', movieId], () => {
-        return fetch(requests.requestMovieCredits(movieId)).then((res) =>
-            res.json()
-        );
-    });
-
-    const recomemndedMovies = useQuery(['recomemndedMovies', movieId], () => {
-        return fetch(requests.requestRecomendedMovies(movieId)).then((res) =>
-            res.json()
-        );
-    });
-
-    const isLiked = useIsMovieLiked(id, sessionToken, movieId);
+    // const isLiked = useIsMovieLiked(id, sessionToken, movieId);
 
     useEffect(() => {
         window.scrollTo({
@@ -56,33 +34,33 @@ function MovieDetails() {
     };
 
     const handleAddToWatchlist = () => {
-        movieService
-            .addToWatchlist(id, sessionToken, movieId)
-            .then((result) => {
-                if (result.success) {
-                    dispatch(
-                        notify({
-                            message: 'Successfully added to My List.',
-                            type: 'success',
-                        })
-                    );
-                }
-            });
+        // movieService
+        //     .addToWatchlist(id, sessionToken, movieId)
+        //     .then((result) => {
+        //         if (result.success) {
+        //             dispatch(
+        //                 notify({
+        //                     message: 'Successfully added to My List.',
+        //                     type: 'success',
+        //                 })
+        //             );
+        //         }
+        //     });
     };
 
     const handleMarkAsFavourite = () => {
-        movieService
-            .markAsFavourite(id, sessionToken, movieId)
-            .then((result) => {
-                if (result.success) {
-                    dispatch(
-                        notify({
-                            message: 'Successfully added to Favourites.',
-                            type: 'success',
-                        })
-                    );
-                }
-            });
+        // movieService
+        //     .markAsFavourite(id, sessionToken, movieId)
+        //     .then((result) => {
+        //         if (result.success) {
+        //             dispatch(
+        //                 notify({
+        //                     message: 'Successfully added to Favourites.',
+        //                     type: 'success',
+        //                 })
+        //             );
+        //         }
+        //     });
     };
 
     if (isLoading || movieCredits.isLoading || recomemndedMovies.isLoading) {
@@ -135,7 +113,7 @@ function MovieDetails() {
                         <Button secondary onClick={handleOpenModal}>
                             <i className="fa-solid fa-circle-play"></i> Trailer
                         </Button>
-                        {isAuth && (
+                        {user && (
                             <>
                                 <Button
                                     action="true"
@@ -143,7 +121,7 @@ function MovieDetails() {
                                 >
                                     <i className="fa-solid fa-plus"></i>
                                 </Button>
-                                {!isLiked ? (
+                                {!true ? (
                                     <Button
                                         action="true"
                                         onClick={handleMarkAsFavourite}
