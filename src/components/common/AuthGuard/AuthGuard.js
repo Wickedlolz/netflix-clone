@@ -1,10 +1,10 @@
-import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
+import { useFirebaseContext } from 'src/context/FirebaseContext';
 
 function AuthGuard({ children }) {
-    const isAuth = useSelector((state) => state.auth.isAuth);
+    const { user } = useFirebaseContext();
 
-    if (!isAuth) {
+    if (!user) {
         return <Navigate to={'/'} replace={true} />;
     }
 
