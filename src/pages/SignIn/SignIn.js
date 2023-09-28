@@ -1,21 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../store/slices/authSlice';
 import { notify } from '../../store/slices/notificationSlice';
-import * as userService from '../../services/userService';
-import { requests } from '../../utils/requests';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet-async';
 
 import Spinner from '../../components/common/Spinner/Spinner';
+import { useFirebaseContext } from 'src/context/FirebaseContext';
 
 function SignIn() {
-    const [token, setToken] = useState();
-    const [isLoading, setIsLoading] = useState(true);
     const navigation = useNavigate();
     const dispatch = useDispatch();
+    const { signIn } = useFirebaseContext();
+    const [isLoading, setIsLoading] = useState(false);
     const {
         register,
         handleSubmit,
@@ -23,49 +21,16 @@ function SignIn() {
     } = useForm();
 
     const onSubmit = async (formData) => {
-        const { username, password } = formData;
+        const { email, password } = formData;
         setIsLoading(true);
         try {
-            const loginResponse = await fetch(requests.requestLogin, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    username,
-                    password,
-                    request_token: token.request_token,
-                }),
-            });
+            await signIn(email, password);
 
-            const loginData = await loginResponse.json();
-
-            if (loginData.success) {
-                const sessionId = await userService.createSession(
-                    loginData.request_token
-                );
-                const user = await userService.getAccount(sessionId);
-
-                dispatch(
-                    setUser({
-                        user: {
-                            id: user.id,
-                            username: user.username,
-                            sessionToken: sessionId,
-                        },
-                    })
-                );
-
-                setIsLoading(false);
-
-                navigation('/home');
-                return;
-            }
-
-            throw new Error(loginData.status_message);
+            navigation('/home');
         } catch (error) {
-            setIsLoading(false);
             dispatch(notify({ message: error.toString(), type: 'error' }));
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -85,14 +50,14 @@ function SignIn() {
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     <Input
                         type="text"
-                        {...register('username', {
+                        {...register('email', {
                             required: true,
                         })}
-                        placeholder="Username"
-                        hasError={errors.username}
+                        placeholder="Email"
+                        hasError={errors.email}
                     ></Input>
-                    {errors.username?.type === 'required' && (
-                        <ErrorField>Username is required.</ErrorField>
+                    {errors.email?.type === 'required' && (
+                        <ErrorField>Email is required.</ErrorField>
                     )}
                     <Input
                         type="password"
