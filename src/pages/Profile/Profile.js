@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../store/slices/authSlice';
 import { notify } from '../../store/slices/notificationSlice';
 import { useNavigate } from 'react-router-dom';
 import * as userService from '../../services/userService';
@@ -16,7 +15,6 @@ function Profile() {
     const handleSignOut = () => {
         userService.signOut(sessionToken).then((result) => {
             if (result.success) {
-                dispatch(logout());
                 navigation('/');
             } else {
                 dispatch(
