@@ -3,6 +3,7 @@ import { useParams, Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useFirebaseContext } from 'src/context/FirebaseContext';
 import { useMovieDetails } from 'src/hooks/useMovieDetails';
+import { useMovieActions } from 'src/hooks/useMovieActions';
 import { show } from '../../store/slices/modalSlice';
 import { notify } from '../../store/slices/notificationSlice';
 import { Helmet } from 'react-helmet-async';
@@ -18,8 +19,8 @@ function MovieDetails() {
     const { user } = useFirebaseContext();
     const { isLoading, error, movie, movieCredits, recomemndedMovies } =
         useMovieDetails(movieId);
-
-    // const isLiked = useIsMovieLiked(id, sessionToken, movieId);
+    const { isLiked, isInWatchList, handleLikeUnlike, handleAddToWatchlist } =
+        useMovieActions(movie);
 
     useEffect(() => {
         window.scrollTo({
@@ -31,36 +32,6 @@ function MovieDetails() {
 
     const handleOpenModal = () => {
         dispatch(show({ videos: movie?.videos }));
-    };
-
-    const handleAddToWatchlist = () => {
-        // movieService
-        //     .addToWatchlist(id, sessionToken, movieId)
-        //     .then((result) => {
-        //         if (result.success) {
-        //             dispatch(
-        //                 notify({
-        //                     message: 'Successfully added to My List.',
-        //                     type: 'success',
-        //                 })
-        //             );
-        //         }
-        //     });
-    };
-
-    const handleMarkAsFavourite = () => {
-        // movieService
-        //     .markAsFavourite(id, sessionToken, movieId)
-        //     .then((result) => {
-        //         if (result.success) {
-        //             dispatch(
-        //                 notify({
-        //                     message: 'Successfully added to Favourites.',
-        //                     type: 'success',
-        //                 })
-        //             );
-        //         }
-        //     });
     };
 
     if (isLoading || movieCredits.isLoading || recomemndedMovies.isLoading) {
@@ -115,21 +86,33 @@ function MovieDetails() {
                         </Button>
                         {user && (
                             <>
-                                <Button
-                                    action="true"
-                                    onClick={handleAddToWatchlist}
-                                >
-                                    <i className="fa-solid fa-plus"></i>
-                                </Button>
-                                {!true ? (
+                                {isInWatchList ? (
                                     <Button
                                         action="true"
-                                        onClick={handleMarkAsFavourite}
+                                        onClick={handleAddToWatchlist}
+                                    >
+                                        <i className="fa-solid fa-check"></i>
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        action="true"
+                                        onClick={handleAddToWatchlist}
+                                    >
+                                        <i className="fa-solid fa-plus"></i>
+                                    </Button>
+                                )}
+                                {!isLiked ? (
+                                    <Button
+                                        action="true"
+                                        onClick={handleLikeUnlike}
                                     >
                                         <i className="fa-regular fa-thumbs-up"></i>
                                     </Button>
                                 ) : (
-                                    <Button action="true">
+                                    <Button
+                                        action="true"
+                                        onClick={handleLikeUnlike}
+                                    >
                                         <i className="fa-regular fa-thumbs-down"></i>
                                     </Button>
                                 )}
