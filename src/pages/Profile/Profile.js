@@ -4,16 +4,12 @@ import { notify } from '../../store/slices/notificationSlice';
 import { useNavigate } from 'react-router-dom';
 import * as userService from '../../services/userService';
 import styled from 'styled-components';
-import useLocalStorage from '../../hooks/useLocalStorage';
 import { Helmet } from 'react-helmet-async';
 
 function Profile() {
     const username = useSelector((state) => state.auth.username);
     const sessionToken = useSelector((state) => state.auth.sessionToken);
-    const [user, setItem, removeItem] = useLocalStorage(
-        'session_id',
-        undefined
-    );
+
     const dispatch = useDispatch();
     const navigation = useNavigate();
 
@@ -21,7 +17,6 @@ function Profile() {
         userService.signOut(sessionToken).then((result) => {
             if (result.success) {
                 dispatch(logout());
-                removeItem();
                 navigation('/');
             } else {
                 dispatch(

@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/slices/authSlice';
 import { notify } from '../../store/slices/notificationSlice';
 import * as userService from '../../services/userService';
-import useLocalStorage from '../../hooks/useLocalStorage';
 import { requests } from '../../utils/requests';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet-async';
@@ -17,30 +16,11 @@ function SignIn() {
     const [isLoading, setIsLoading] = useState(true);
     const navigation = useNavigate();
     const dispatch = useDispatch();
-    const [user, setItem] = useLocalStorage('session_id', undefined);
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
-
-    useEffect(() => {
-        setIsLoading(true);
-        fetch(requests.requestToken)
-            .then((res) => res.json())
-            .then((data) => {
-                setToken(data);
-                setIsLoading(false);
-            })
-            .catch((error) => {
-                dispatch(
-                    notify({
-                        message: error.status_message.toString(),
-                        type: 'error',
-                    })
-                );
-            });
-    }, [dispatch]);
 
     const onSubmit = async (formData) => {
         const { username, password } = formData;
@@ -76,11 +56,6 @@ function SignIn() {
                     })
                 );
 
-                setItem({
-                    id: user.id,
-                    username: user.username,
-                    sessionToken: sessionId,
-                });
                 setIsLoading(false);
 
                 navigation('/home');
