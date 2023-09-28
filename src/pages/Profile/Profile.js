@@ -1,30 +1,28 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { notify } from '../../store/slices/notificationSlice';
 import { useNavigate } from 'react-router-dom';
-import * as userService from '../../services/userService';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet-async';
+import { useFirebaseContext } from 'src/context/FirebaseContext';
 
 function Profile() {
-    const username = useSelector((state) => state.auth.username);
-    const sessionToken = useSelector((state) => state.auth.sessionToken);
+    const { user, logOut } = useFirebaseContext();
 
     const dispatch = useDispatch();
-    const navigation = useNavigate();
+    const navigate = useNavigate();
 
-    const handleSignOut = () => {
-        userService.signOut(sessionToken).then((result) => {
-            if (result.success) {
-                navigation('/');
-            } else {
-                dispatch(
-                    notify({
-                        message: result.status_message.toString(),
-                        type: 'error',
-                    })
-                );
-            }
-        });
+    const handleSignOut = async () => {
+        try {
+            await logOut();
+            navigate('/');
+        } catch (error) {
+            dispatch(
+                notify({
+                    message: error.message,
+                    type: 'error',
+                })
+            );
+        }
     };
 
     return (
@@ -43,7 +41,7 @@ function Profile() {
                     <EmailField
                         type="text"
                         disabled
-                        defaultValue={username}
+                        defaultValue={user.email}
                     ></EmailField>
                     <SubTitle>Plans</SubTitle>
                     <PlansList>
