@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useDebounce } from 'src/hooks/useDebounce';
+import { useFirebaseContext } from 'src/context/FirebaseContext';
 
 function Header() {
-    const isAuth = useSelector((state) => state.auth.isAuth);
+    const { user } = useFirebaseContext();
     const [isScrolled, setIsScrolled] = useState(false);
     const [toggleMenuOpen, setToggleMenuOpen] = useState(false);
     const [toggleSearch, setToggleSearch] = useState(false);
@@ -39,8 +39,8 @@ function Header() {
                 <HeaderLogo src="/assets/logo.png"></HeaderLogo>
                 <HeaderSmallLogo src="/assets/Netflix_Symbol_RGB.png"></HeaderSmallLogo>
             </HeaderLogoLink>
-            {!isAuth && <SignInButton to="/sign-in">Sign In</SignInButton>}
-            {isAuth && (
+            {!user && <SignInButton to="/sign-in">Sign In</SignInButton>}
+            {user && (
                 <>
                     <Navigation>
                         <List>
