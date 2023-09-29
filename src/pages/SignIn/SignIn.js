@@ -93,12 +93,7 @@ function SignIn() {
                 </Box>
                 <Text>
                     New to Netflix?{' '}
-                    <SignUpLink
-                        href="https://www.themoviedb.org/signup?redirect_to=http://localhost:3000/sign-in"
-                        target="_blank"
-                    >
-                        Sign up now
-                    </SignUpLink>
+                    <SignUpLink to="/sign-up">Sign up now</SignUpLink>
                 </Text>
                 <Text sm>
                     This page is protected by Google reCAPTCHA to ensure you're
@@ -223,7 +218,7 @@ const StyledLink = styled(Link)`
     }
 `;
 
-const SignUpLink = styled.a`
+const SignUpLink = styled(Link)`
     font-size: 20px;
     color: #fff;
     text-decoration: none;
