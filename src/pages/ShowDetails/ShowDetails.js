@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { useQuery } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { requests } from '../../utils/requests';
+import { useDispatch } from 'react-redux';
+import { useFirebaseContext } from 'src/context/FirebaseContext';
+import { useShowDetails } from 'src/hooks/useShowDetails';
 import { show } from '../../store/slices/modalSlice';
 import { notify } from '../../store/slices/notificationSlice';
-import * as showService from '../../services/showService';
 import { Helmet } from 'react-helmet-async';
+import { BASE_IMAGE_URL } from 'src/utils/constants';
 
 import MoreDetails from '../../components/MoreDetails/MoreDetails';
 import Spinner from '../../components/common/Spinner/Spinner';
@@ -17,31 +17,8 @@ function ShowDetails() {
     const { showId } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { id, username, sessionToken, isAuth } = useSelector(
-        (state) => state.auth
-    );
-
-    const {
-        isLoading,
-        error,
-        data: tvShow,
-    } = useQuery(['showDetails', showId], () => {
-        return fetch(requests.requestShowById(showId)).then((res) =>
-            res.json()
-        );
-    });
-
-    const showCredits = useQuery(['showCredits', showId], () => {
-        return fetch(requests.requestShowCredits(showId)).then((res) =>
-            res.json()
-        );
-    });
-
-    const recomemndedShows = useQuery(['recomemndedShows', showId], () => {
-        return fetch(requests.requestRecomendedShows(showId)).then((res) =>
-            res.json()
-        );
-    });
+    const { user } = useFirebaseContext();
+    const { showData, showCredits, recomemndedShows } = useShowDetails(showId);
 
     useEffect(() => {
         window.scrollTo({
@@ -52,25 +29,29 @@ function ShowDetails() {
     }, [showId]);
 
     const handleOpenModal = () => {
-        dispatch(show({ videos: tvShow?.videos }));
+        dispatch(show({ videos: showData.data?.videos }));
     };
 
     const handleAddToWatchlist = () => {
-        showService.addToWatchlist(id, sessionToken, showId).then((result) => {
-            dispatch(
-                notify({
-                    message: 'Successfully added to My List.',
-                    type: 'success',
-                })
-            );
-        });
+        // showService.addToWatchlist(id, sessionToken, showId).then((result) => {
+        //     dispatch(
+        //         notify({
+        //             message: 'Successfully added to My List.',
+        //             type: 'success',
+        //         })
+        //     );
+        // });
     };
 
-    if (isLoading && showCredits.isLoading && recomemndedShows.isLoading) {
+    if (
+        showData.isLoading &&
+        showCredits.isLoading &&
+        recomemndedShows.isLoading
+    ) {
         return <Spinner />;
     }
 
-    if (error && showCredits.error && recomemndedShows.error) {
+    if (showData.error && showCredits.error && recomemndedShows.error) {
         dispatch(notify({ message: 'Something went wrong.', type: 'error' }));
         navigate('/home');
     }
@@ -79,40 +60,45 @@ function ShowDetails() {
         <Container>
             <Helmet>
                 <title>
-                    {tvShow?.name || tvShow?.original_name || 'Show'} | Netflix
+                    {showData.data?.name ||
+                        showData.data?.original_name ||
+                        'Show'}{' '}
+                    | Netflix
                 </title>
             </Helmet>
             <Preview>
                 <Image
                     loading="lazy"
-                    src={
-                        'https://image.tmdb.org/t/p/original' +
-                            tvShow?.backdrop_path || tvShow?.poster_path
-                    }
-                    alt={tvShow?.name || tvShow?.original_name}
+                    src={`${BASE_IMAGE_URL}${
+                        showData.data?.backdrop_path ||
+                        showData.data?.poster_path
+                    }`}
+                    alt={showData.data?.name || showData.data?.original_name}
                 ></Image>
                 <Layout></Layout>
                 <Content>
-                    <Title>{tvShow?.name || tvShow?.original_name}</Title>
+                    <Title>
+                        {showData.data?.name || showData.data?.original_name}
+                    </Title>
                     <InfoWrapper>
                         <InfoText>
-                            {tvShow?.first_air_date.substring(0, 4)}
+                            {showData.data?.first_air_date.substring(0, 4)}
                         </InfoText>
                         <Spacer></Spacer>
                         <InfoText rating>
-                            {Math.floor(tvShow?.vote_average)}+
+                            {Math.floor(showData.data?.vote_average)}+
                         </InfoText>
                         <Spacer></Spacer>
-                        {tvShow?.episode_run_time[0] && (
+                        {showData.data?.episode_run_time[0] && (
                             <>
                                 <InfoText>
-                                    {tvShow?.episode_run_time[0]}m
+                                    {showData.data?.episode_run_time[0]}m
                                 </InfoText>
                                 <Spacer></Spacer>
                             </>
                         )}
                         <InfoText>
-                            {tvShow?.genres.map((g) => g.name).join(' ')}
+                            {showData.data?.genres.map((g) => g.name).join(' ')}
                         </InfoText>
                     </InfoWrapper>
                     <Actions>
@@ -122,7 +108,7 @@ function ShowDetails() {
                         <Button secondary onClick={handleOpenModal}>
                             <i className="fa-solid fa-circle-play"></i> Trailer
                         </Button>
-                        {isAuth && (
+                        {user && (
                             <>
                                 <Button
                                     action="true"
@@ -136,10 +122,10 @@ function ShowDetails() {
                             </>
                         )}
                         {/* <Button>
-                    <i className="fa-regular fa-thumbs-down"></i>
-                </Button> */}
+                            <i className="fa-regular fa-thumbs-down"></i>
+                        </Button> */}
                     </Actions>
-                    <Overview>{tvShow?.overview}</Overview>
+                    <Overview>{showData.data?.overview}</Overview>
                     {!showCredits.isLoading && (
                         <Starring>
                             <StarringText>Starring</StarringText>:{' '}
@@ -152,16 +138,18 @@ function ShowDetails() {
                 </Content>
             </Preview>
             <Tagline>
-                <TaglineText>{tvShow?.tagline || tvShow?.status}</TaglineText>
+                <TaglineText>
+                    {showData.data?.tagline || show.data?.status}
+                </TaglineText>
             </Tagline>
             <MoreDetails
-                item={tvShow}
+                item={showData.data}
                 cast={showCredits?.data?.cast}
                 isShow={true}
             />
             <MoreLikeThis
                 recomended={recomemndedShows.data?.results}
-                title={tvShow?.name || tvShow?.original_name}
+                title={showData.data?.name || showData.data?.original_name}
             />
         </Container>
     );
