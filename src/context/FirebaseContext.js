@@ -29,8 +29,7 @@ export const FirebaseContextProvider = ({ children }) => {
     const signUp = async (email, password) => {
         await createUserWithEmailAndPassword(auth, email, password);
         await setDoc(doc(db, 'users', email), {
-            savedShows: [],
-            likedShows: [],
+            liked: [],
             watchLater: [],
         });
     };
@@ -38,8 +37,7 @@ export const FirebaseContextProvider = ({ children }) => {
     const signInWithGoogle = async () => {
         const result = await signInWithPopup(auth, googleProvider);
         await setDoc(doc(db, 'users', result.user.email), {
-            savedShows: [],
-            likedShows: [],
+            liked: [],
             watchLater: [],
         });
     };
