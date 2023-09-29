@@ -7,6 +7,10 @@ import {
 } from 'firebase/firestore';
 import { db } from 'src/firebase.config';
 
+export const getAllWatchLater = async (userEmail) => {
+    return await getDoc(doc(db, 'users', userEmail));
+};
+
 export async function addToWatchlist(userEmail, movieData) {
     const user = await getDoc(doc(db, 'users', userEmail));
     const isAdded = user.data().watchLater.find((m) => m.id === movieData.id);
