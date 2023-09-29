@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useFirebaseContext } from 'src/context/FirebaseContext';
 import { useShowDetails } from 'src/hooks/useShowDetails';
+import { useShowActions } from 'src/hooks/useShowActions';
 import { show } from '../../store/slices/modalSlice';
 import { notify } from '../../store/slices/notificationSlice';
 import { Helmet } from 'react-helmet-async';
@@ -12,7 +13,6 @@ import MoreDetails from '../../components/MoreDetails/MoreDetails';
 import Spinner from '../../components/common/Spinner/Spinner';
 import styled from 'styled-components';
 import MoreLikeThis from '../../components/MoreLikeThis/MoreLikeThis';
-import { useShowActions } from 'src/hooks/useShowActions';
 
 function ShowDetails() {
     const { showId } = useParams();
