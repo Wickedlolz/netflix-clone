@@ -8,6 +8,7 @@ import AuthGuard from '../components/common/AuthGuard/AuthGuard';
 import GuestGuard from '../components/common/GuestGuard/GuestGuard';
 import Spinner from '../components/common/Spinner/Spinner';
 import Search from '../pages/Search/Search';
+import SignUp from 'src/pages/SignUp/SignUp';
 const Home = lazy(() => import('../pages/Home/Home'));
 const Movies = lazy(() => import('../pages/Movies/Movies'));
 const MovieDetails = lazy(() => import('../pages/MovieDetails/MovieDetails'));
@@ -23,6 +24,7 @@ function AppRoutes() {
             <Route element={<GuestGuard />}>
                 <Route path="/" element={<Welcome />} />
                 <Route path="/sign-in" element={<SignIn />} />
+                <Route path="/sign-up" element={<SignUp />} />
             </Route>
             <Route element={<AuthGuard />}>
                 <Route
