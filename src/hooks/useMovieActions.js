@@ -16,10 +16,10 @@ export const useMovieActions = (movie) => {
         const unsubscribe = onSnapshot(doc(db, 'users', user.email), (doc) => {
             const isLiked = doc
                 .data()
-                ?.likedShows.find((mid) => mid === movie.id);
+                ?.likedShows.find((mid) => mid === movie?.id);
             const isInWatchList = doc
                 .data()
-                ?.watchLater.find((m) => m.id === movie.id);
+                ?.watchLater.find((m) => m.id === movie?.id);
 
             if (isLiked) {
                 setIsLiked(true);
@@ -38,7 +38,7 @@ export const useMovieActions = (movie) => {
     }, [user, movie]);
 
     const handleLikeUnlike = async () => {
-        const liked = await movieService.likeUnlike(user.email, movie.id);
+        const liked = await movieService.likeUnlike(user.email, movie?.id);
 
         if (liked) {
             dispatch(
@@ -59,9 +59,12 @@ export const useMovieActions = (movie) => {
 
     const handleAddToWatchlist = async () => {
         try {
-            const added = await movieService.addToWatchlist(user.email, movie);
+            const isAdded = await movieService.addToWatchlist(
+                user.email,
+                movie
+            );
 
-            if (added) {
+            if (isAdded) {
                 dispatch(
                     notify({
                         message: 'Successfully added to My List.',
