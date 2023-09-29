@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { SMALL_IMAGE_URL } from 'src/utils/constants';
 import styled from 'styled-components';
 
 function MovieItem({ movie }) {
@@ -6,10 +7,9 @@ function MovieItem({ movie }) {
         <Container to={'/movie/' + movie.id}>
             <Image
                 loading="lazy"
-                src={
-                    'https://image.tmdb.org/t/p/w500' + movie?.backdrop_path ||
-                    movie?.poster_path
-                }
+                src={`${SMALL_IMAGE_URL}${
+                    movie?.backdrop_path || movie?.poster_path
+                }`}
                 alt={movie?.title || movie?.original_title}
             ></Image>
             <Title>{movie?.title || movie?.original_title}</Title>
