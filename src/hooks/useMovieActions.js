@@ -19,7 +19,7 @@ export const useMovieActions = (movie) => {
                 ?.likedShows.find((mid) => mid === movie.id);
             const isInWatchList = doc
                 .data()
-                ?.watchLater.find((m) => m.id === movie?.id);
+                ?.watchLater.find((m) => m.id === movie.id);
 
             if (isLiked) {
                 setIsLiked(true);

@@ -11,41 +11,43 @@ import { db } from 'src/firebase.config';
 export async function addToWatchlist(userEmail, movieData) {
     const user = await getDoc(doc(db, 'users', userEmail));
     const isAdded = user.data().watchLater.find((m) => m.id === movieData.id);
-    let added = false;
 
     if (isAdded) {
+        const updatedList = user
+            .data()
+            .watchLater.filter((m) => m.id !== movieData.id);
+
         await updateDoc(doc(db, 'users', userEmail), {
-            watchLater: arrayRemove(movieData),
+            watchLater: updatedList,
         });
-        added = false;
+
+        return false;
     } else {
         await updateDoc(doc(db, 'users', userEmail), {
             watchLater: arrayUnion(movieData),
         });
-        added = true;
-    }
 
-    return added;
+        return true;
+    }
 }
 
 export async function likeUnlike(userEmail, movieId) {
     const user = await getDoc(doc(db, 'users', userEmail));
     const isLiked = user.data().likedShows.find((mid) => mid === movieId);
-    let liked = false;
 
     if (isLiked) {
         await updateDoc(doc(db, 'users', userEmail), {
             likedShows: arrayRemove(movieId),
         });
-        liked = false;
+
+        return false;
     } else {
         await updateDoc(doc(db, 'users', userEmail), {
             likedShows: arrayUnion(movieId),
         });
-        liked = true;
-    }
 
-    return liked;
+        return true;
+    }
 }
 
 export async function markAsFavourite(accountId, session_id, movieId) {
