@@ -133,7 +133,7 @@ const SignUp = () => {
                 </Box>
                 <Text>
                     Already have account?{' '}
-                    <SignUpLink to="/sign-up">Sign in now</SignUpLink>
+                    <SignUpLink to="/sign-in">Sign in now</SignUpLink>
                 </Text>
                 <Text sm>
                     This page is protected by Google reCAPTCHA to ensure you're
