@@ -5,7 +5,6 @@ import {
     getDoc,
     arrayRemove,
 } from 'firebase/firestore';
-import { requests } from '../utils/requests';
 import { db } from 'src/firebase.config';
 
 export async function addToWatchlist(userEmail, movieData) {
@@ -48,25 +47,4 @@ export async function likeUnlike(userEmail, movieId) {
 
         return true;
     }
-}
-
-export async function markAsFavourite(accountId, session_id, movieId) {
-    const response = await fetch(
-        requests.requestMarkAsFavorite(accountId, session_id),
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                media_type: 'movie',
-                media_id: movieId,
-                favorite: true,
-            }),
-        }
-    );
-
-    const data = await response.json();
-
-    return data;
 }
