@@ -12,6 +12,7 @@ import MoreDetails from '../../components/MoreDetails/MoreDetails';
 import Spinner from '../../components/common/Spinner/Spinner';
 import styled from 'styled-components';
 import MoreLikeThis from '../../components/MoreLikeThis/MoreLikeThis';
+import { useShowActions } from 'src/hooks/useShowActions';
 
 function ShowDetails() {
     const { showId } = useParams();
@@ -19,6 +20,8 @@ function ShowDetails() {
     const dispatch = useDispatch();
     const { user } = useFirebaseContext();
     const { showData, showCredits, recomemndedShows } = useShowDetails(showId);
+    const { isLiked, isInWatchList, handleAddToWatchlist, handleLikeUnlike } =
+        useShowActions(showData.data);
 
     useEffect(() => {
         window.scrollTo({
@@ -30,17 +33,6 @@ function ShowDetails() {
 
     const handleOpenModal = () => {
         dispatch(show({ videos: showData.data?.videos }));
-    };
-
-    const handleAddToWatchlist = () => {
-        // showService.addToWatchlist(id, sessionToken, showId).then((result) => {
-        //     dispatch(
-        //         notify({
-        //             message: 'Successfully added to My List.',
-        //             type: 'success',
-        //         })
-        //     );
-        // });
     };
 
     if (
@@ -110,20 +102,38 @@ function ShowDetails() {
                         </Button>
                         {user && (
                             <>
-                                <Button
-                                    action="true"
-                                    onClick={handleAddToWatchlist}
-                                >
-                                    <i className="fa-solid fa-plus"></i>
-                                </Button>
-                                <Button action="true">
-                                    <i className="fa-regular fa-thumbs-up"></i>
-                                </Button>
+                                {isInWatchList ? (
+                                    <Button
+                                        action="true"
+                                        onClick={handleAddToWatchlist}
+                                    >
+                                        <i className="fa-solid fa-check"></i>
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        action="true"
+                                        onClick={handleAddToWatchlist}
+                                    >
+                                        <i className="fa-solid fa-plus"></i>
+                                    </Button>
+                                )}
+                                {!isLiked ? (
+                                    <Button
+                                        action="true"
+                                        onClick={handleLikeUnlike}
+                                    >
+                                        <i className="fa-regular fa-thumbs-up"></i>
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        action="true"
+                                        onClick={handleLikeUnlike}
+                                    >
+                                        <i className="fa-regular fa-thumbs-down"></i>
+                                    </Button>
+                                )}
                             </>
                         )}
-                        {/* <Button>
-                            <i className="fa-regular fa-thumbs-down"></i>
-                        </Button> */}
                     </Actions>
                     <Overview>{showData.data?.overview}</Overview>
                     {!showCredits.isLoading && (
