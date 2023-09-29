@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { SMALL_IMAGE_URL } from 'src/utils/constants';
 import styled from 'styled-components';
 
 function ShowItem({ show }) {
@@ -6,10 +7,9 @@ function ShowItem({ show }) {
         <Container to={'/show/' + show.id}>
             <Image
                 loading="lazy"
-                src={
-                    'https://image.tmdb.org/t/p/w500' + show?.backdrop_path ||
-                    show?.poster_path
-                }
+                src={`${SMALL_IMAGE_URL}${
+                    show?.backdrop_path || show?.poster_path
+                }`}
                 alt={show?.name || show?.original_name}
             ></Image>
             <Title>{show?.name || show?.original_name}</Title>
