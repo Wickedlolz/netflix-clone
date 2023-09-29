@@ -49,15 +49,23 @@ function SignIn() {
                 <Title>Sign In</Title>
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     <Input
-                        type="text"
+                        type="email"
                         {...register('email', {
                             required: true,
+                            pattern: {
+                                value: /^[A-Za-z0-9]{2,}@[a-z]+\.[a-z]{2,3}$/,
+                                message:
+                                    'Invalid email. Email format must be (example@yahoo.com)',
+                            },
                         })}
                         placeholder="Email"
                         hasError={errors.email}
                     ></Input>
                     {errors.email?.type === 'required' && (
                         <ErrorField>Email is required.</ErrorField>
+                    )}
+                    {errors.email?.type === 'pattern' && (
+                        <ErrorField>{errors.email?.message}</ErrorField>
                     )}
                     <Input
                         type="password"
