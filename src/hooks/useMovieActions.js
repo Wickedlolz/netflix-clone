@@ -13,7 +13,7 @@ export const useMovieActions = (movie) => {
     const [isInWatchList, setIsInWatchList] = useState(false);
 
     useEffect(() => {
-        onSnapshot(doc(db, 'users', user.email), (doc) => {
+        const unsubscribe = onSnapshot(doc(db, 'users', user.email), (doc) => {
             const isLiked = doc
                 .data()
                 ?.likedShows.find((mid) => mid === movie.id);
@@ -33,6 +33,8 @@ export const useMovieActions = (movie) => {
                 setIsInWatchList(false);
             }
         });
+
+        return () => unsubscribe();
     }, [user, movie]);
 
     const handleLikeUnlike = async () => {
