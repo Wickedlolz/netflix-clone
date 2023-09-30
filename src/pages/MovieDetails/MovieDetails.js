@@ -3,7 +3,7 @@ import { useParams, Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useFirebaseContext } from 'src/context/FirebaseContext';
 import { useMovieDetails } from 'src/hooks/useMovieDetails';
-import { useMovieActions } from 'src/hooks/useMovieActions';
+import { useActions } from 'src/hooks/useActions';
 import { show } from '../../store/slices/modalSlice';
 import { notify } from '../../store/slices/notificationSlice';
 import { Helmet } from 'react-helmet-async';
@@ -20,7 +20,7 @@ function MovieDetails() {
     const { isLoading, error, movie, movieCredits, recomemndedMovies } =
         useMovieDetails(movieId);
     const { isLiked, isInWatchList, handleLikeUnlike, handleAddToWatchlist } =
-        useMovieActions(movie);
+        useActions(movie);
 
     useEffect(() => {
         window.scrollTo({

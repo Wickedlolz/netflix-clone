@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { useFirebaseContext } from 'src/context/FirebaseContext';
+import { useForm } from 'react-hook-form';
 import { notify } from '../../store/slices/notificationSlice';
-import styled from 'styled-components';
 import { Helmet } from 'react-helmet-async';
+import styled from 'styled-components';
+import { EMAIL_REGEX } from 'src/utils/constants';
 
 import Spinner from '../../components/common/Spinner/Spinner';
-import { useFirebaseContext } from 'src/context/FirebaseContext';
 
 function SignIn() {
     const navigation = useNavigate();
@@ -53,7 +54,7 @@ function SignIn() {
                         {...register('email', {
                             required: true,
                             pattern: {
-                                value: /^[A-Za-z0-9]{2,}@[a-z]+\.[a-z]{2,3}$/,
+                                value: EMAIL_REGEX,
                                 message:
                                     'Invalid email. Email format must be (example@yahoo.com)',
                             },
