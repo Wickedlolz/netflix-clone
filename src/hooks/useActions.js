@@ -6,7 +6,7 @@ import { db } from 'src/firebase.config';
 import { movieService } from 'src/services';
 import { notify } from 'src/store/slices/notificationSlice';
 
-export const useMovieActions = (movie) => {
+export const useActions = (movie) => {
     const dispatch = useDispatch();
     const { user } = useFirebaseContext();
     const [isLiked, setIsLiked] = useState(false);
@@ -43,14 +43,14 @@ export const useMovieActions = (movie) => {
         if (liked) {
             dispatch(
                 notify({
-                    message: `Successfully like ${movie.title}`,
+                    message: `Successfully like ${movie.title || movie.name}`,
                     type: 'success',
                 })
             );
         } else {
             dispatch(
                 notify({
-                    message: `Successfully unlike ${movie.title}`,
+                    message: `Successfully unlike ${movie.title || movie.name}`,
                     type: 'success',
                 })
             );
