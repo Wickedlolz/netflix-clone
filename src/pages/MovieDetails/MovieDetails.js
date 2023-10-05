@@ -8,6 +8,7 @@ import { show } from '../../store/slices/modalSlice';
 import { notify } from '../../store/slices/notificationSlice';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
+import { BASE_IMAGE_URL } from 'src/utils/constants';
 
 import Spinner from '../../components/common/Spinner/Spinner';
 import MoreDetails from '../../components/MoreDetails/MoreDetails';
@@ -53,10 +54,8 @@ function MovieDetails() {
             <Preview>
                 <Image
                     loading="lazy"
-                    src={
-                        'https://image.tmdb.org/t/p/original' +
-                            movie?.backdrop_path || movie?.poster_path
-                    }
+                    src={`${BASE_IMAGE_URL}
+                            ${movie?.backdrop_path || movie?.poster_path}`}
                     alt={movie?.title || movie?.original_title}
                 ></Image>
                 <Layout></Layout>
