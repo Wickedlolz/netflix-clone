@@ -41,7 +41,7 @@ function MovieDetails() {
 
     if (error || movieCredits.error || recomemndedMovies.error) {
         dispatch(notify({ message: 'Something went wrong.', type: 'error' }));
-        return <Navigate to="/" />;
+        return <Navigate to='/' />;
     }
 
     return (
@@ -53,9 +53,10 @@ function MovieDetails() {
             </Helmet>
             <Preview>
                 <Image
-                    loading="lazy"
-                    src={`${BASE_IMAGE_URL}
-                            ${movie?.backdrop_path || movie?.poster_path}`}
+                    loading='lazy'
+                    src={`${BASE_IMAGE_URL}${
+                        movie?.backdrop_path || movie?.poster_path
+                    }`}
                     alt={movie?.title || movie?.original_title}
                 ></Image>
                 <Layout></Layout>
@@ -78,41 +79,41 @@ function MovieDetails() {
                     </InfoWrapper>
                     <Actions>
                         <Button primary>
-                            <i className="fa-solid fa-play"></i> Play
+                            <i className='fa-solid fa-play'></i> Play
                         </Button>
                         <Button secondary onClick={handleOpenModal}>
-                            <i className="fa-solid fa-circle-play"></i> Trailer
+                            <i className='fa-solid fa-circle-play'></i> Trailer
                         </Button>
                         {user && (
                             <>
                                 {isInWatchList ? (
                                     <Button
-                                        action="true"
+                                        action='true'
                                         onClick={handleAddToWatchlist}
                                     >
-                                        <i className="fa-solid fa-check"></i>
+                                        <i className='fa-solid fa-check'></i>
                                     </Button>
                                 ) : (
                                     <Button
-                                        action="true"
+                                        action='true'
                                         onClick={handleAddToWatchlist}
                                     >
-                                        <i className="fa-solid fa-plus"></i>
+                                        <i className='fa-solid fa-plus'></i>
                                     </Button>
                                 )}
                                 {!isLiked ? (
                                     <Button
-                                        action="true"
+                                        action='true'
                                         onClick={handleLikeUnlike}
                                     >
-                                        <i className="fa-regular fa-thumbs-up"></i>
+                                        <i className='fa-regular fa-thumbs-up'></i>
                                     </Button>
                                 ) : (
                                     <Button
-                                        action="true"
+                                        action='true'
                                         onClick={handleLikeUnlike}
                                     >
-                                        <i className="fa-regular fa-thumbs-down"></i>
+                                        <i className='fa-regular fa-thumbs-down'></i>
                                     </Button>
                                 )}
                             </>
