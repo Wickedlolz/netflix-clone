@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { requests } from '../../utils/requests';
+import { requests } from 'src/utils/requests';
 import { Helmet } from 'react-helmet-async';
 
-import MovieCollection from '../../components/MovieCollection/MovieCollection';
-import Billboard from '../../components/Billboard/Billboard';
+import MovieCollection from 'src/components/MovieCollection/MovieCollection';
+import Billboard from 'src/components/Billboard/Billboard';
 
 function Movies() {
     return (

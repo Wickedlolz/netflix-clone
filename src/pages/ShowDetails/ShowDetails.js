@@ -4,15 +4,15 @@ import { useDispatch } from 'react-redux';
 import { useFirebaseContext } from 'src/context/FirebaseContext';
 import { useShowDetails } from 'src/hooks/useShowDetails';
 import { useActions } from 'src/hooks/useActions';
-import { show } from '../../store/slices/modalSlice';
-import { notify } from '../../store/slices/notificationSlice';
+import { show } from 'src/store/slices/modalSlice';
+import { notify } from 'src/store/slices/notificationSlice';
 import { Helmet } from 'react-helmet-async';
 import { BASE_IMAGE_URL } from 'src/utils/constants';
 import styled from 'styled-components';
 
-import MoreDetails from '../../components/MoreDetails/MoreDetails';
-import Spinner from '../../components/common/Spinner/Spinner';
-import MoreLikeThis from '../../components/MoreLikeThis/MoreLikeThis';
+import MoreDetails from 'src/components/MoreDetails/MoreDetails';
+import Spinner from 'src/components/common/Spinner/Spinner';
+import MoreLikeThis from 'src/components/MoreLikeThis/MoreLikeThis';
 
 function ShowDetails() {
     const { showId } = useParams();

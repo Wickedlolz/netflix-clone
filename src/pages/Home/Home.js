@@ -1,14 +1,14 @@
 import { Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { notify } from '../../store/slices/notificationSlice';
-import { requests } from '../../utils/requests';
+import { notify } from 'src/store/slices/notificationSlice';
+import { requests } from 'src/utils/requests';
 import { Helmet } from 'react-helmet-async';
 
-import Hero from '../../components/Hero/Hero';
+import Hero from 'src/components/Hero/Hero';
 import styled from 'styled-components';
 import { useQuery } from 'react-query';
-import Spinner from '../../components/common/Spinner/Spinner';
-import MovieCollection from '../../components/MovieCollection/MovieCollection';
+import Spinner from 'src/components/common/Spinner/Spinner';
+import MovieCollection from 'src/components/MovieCollection/MovieCollection';
 
 function Home() {
     const dispatch = useDispatch();

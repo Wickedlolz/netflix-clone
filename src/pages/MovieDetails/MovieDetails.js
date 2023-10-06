@@ -4,15 +4,15 @@ import { useDispatch } from 'react-redux';
 import { useFirebaseContext } from 'src/context/FirebaseContext';
 import { useMovieDetails } from 'src/hooks/useMovieDetails';
 import { useActions } from 'src/hooks/useActions';
-import { show } from '../../store/slices/modalSlice';
-import { notify } from '../../store/slices/notificationSlice';
+import { show } from 'src/store/slices/modalSlice';
+import { notify } from 'src/store/slices/notificationSlice';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import { BASE_IMAGE_URL } from 'src/utils/constants';
 
-import Spinner from '../../components/common/Spinner/Spinner';
-import MoreDetails from '../../components/MoreDetails/MoreDetails';
-import MoreLikeThis from '../../components/MoreLikeThis/MoreLikeThis';
+import Spinner from 'src/components/common/Spinner/Spinner';
+import MoreDetails from 'src/components/MoreDetails/MoreDetails';
+import MoreLikeThis from 'src/components/MoreLikeThis/MoreLikeThis';
 
 function MovieDetails() {
     const { movieId } = useParams();

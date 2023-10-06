@@ -1,22 +1,22 @@
 import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Welcome from '../pages/Welcome/Welcome';
-import SignIn from '../pages/SignIn/SignIn';
-import NotFound from '../pages/NotFound/NotFound';
-import AuthGuard from '../components/common/AuthGuard/AuthGuard';
-import GuestGuard from '../components/common/GuestGuard/GuestGuard';
-import Spinner from '../components/common/Spinner/Spinner';
-import Search from '../pages/Search/Search';
+import Welcome from 'src/pages/Welcome/Welcome';
+import SignIn from 'src/pages/SignIn/SignIn';
+import NotFound from 'src/pages/NotFound/NotFound';
+import AuthGuard from 'src/components/common/AuthGuard/AuthGuard';
+import GuestGuard from 'src/components/common/GuestGuard/GuestGuard';
+import Spinner from 'src/components/common/Spinner/Spinner';
+import Search from 'src/pages/Search/Search';
 import SignUp from 'src/pages/SignUp/SignUp';
-const Home = lazy(() => import('../pages/Home/Home'));
-const Movies = lazy(() => import('../pages/Movies/Movies'));
-const MovieDetails = lazy(() => import('../pages/MovieDetails/MovieDetails'));
-const ShowDetails = lazy(() => import('../pages/ShowDetails/ShowDetails'));
-const Profile = lazy(() => import('../pages/Profile/Profile'));
-const MyList = lazy(() => import('../pages/MyList/MyList'));
-const Shows = lazy(() => import('../pages/Shows/Shows'));
-const Latest = lazy(() => import('../pages/Latest/Latest'));
+const Home = lazy(() => import('src/pages/Home/Home'));
+const Movies = lazy(() => import('src/pages/Movies/Movies'));
+const MovieDetails = lazy(() => import('src/pages/MovieDetails/MovieDetails'));
+const ShowDetails = lazy(() => import('src/pages/ShowDetails/ShowDetails'));
+const Profile = lazy(() => import('src/pages/Profile/Profile'));
+const MyList = lazy(() => import('src/pages/MyList/MyList'));
+const Shows = lazy(() => import('src/pages/Shows/Shows'));
+const Latest = lazy(() => import('src/pages/Latest/Latest'));
 
 function AppRoutes() {
     return (

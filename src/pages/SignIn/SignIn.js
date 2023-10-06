@@ -3,12 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useFirebaseContext } from 'src/context/FirebaseContext';
 import { useForm } from 'react-hook-form';
-import { notify } from '../../store/slices/notificationSlice';
+import { notify } from 'src/store/slices/notificationSlice';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import { EMAIL_REGEX } from 'src/utils/constants';
 
-import Spinner from '../../components/common/Spinner/Spinner';
+import Spinner from 'src/components/common/Spinner/Spinner';
 
 function SignIn() {
     const navigation = useNavigate();

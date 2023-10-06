@@ -1,9 +1,9 @@
-import { requests } from '../../utils/requests';
+import { requests } from 'src/utils/requests';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet-async';
 
-import ShowColletion from '../../components/ShowColletion/ShowColletion';
-import Billboard from '../../components/Billboard/Billboard';
+import ShowColletion from 'src/components/ShowColletion/ShowColletion';
+import Billboard from 'src/components/Billboard/Billboard';
 
 function Shows() {
     return (

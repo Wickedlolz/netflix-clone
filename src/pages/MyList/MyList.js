@@ -6,11 +6,11 @@ import { movieService } from 'src/services';
 import { notify } from 'src/store/slices/notificationSlice';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
+import { SMALL_IMAGE_URL } from 'src/utils/constants';
 
-import Billboard from '../../components/Billboard/Billboard';
+import Billboard from 'src/components/Billboard/Billboard';
 import Spinner from 'src/components/common/Spinner/Spinner';
 import Carousel from 'react-multi-carousel';
-import { SMALL_IMAGE_URL } from 'src/utils/constants';
 
 function MyList() {
     const dispatch = useDispatch();

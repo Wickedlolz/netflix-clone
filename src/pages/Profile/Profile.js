@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
-import { notify } from '../../store/slices/notificationSlice';
+import { useFirebaseContext } from 'src/context/FirebaseContext';
+import { notify } from 'src/store/slices/notificationSlice';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet-async';
-import { useFirebaseContext } from 'src/context/FirebaseContext';
 
 function Profile() {
     const { user, logOut } = useFirebaseContext();
