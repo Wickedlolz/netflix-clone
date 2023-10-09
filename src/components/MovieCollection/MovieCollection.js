@@ -6,7 +6,6 @@ import Carousel from 'react-multi-carousel';
 import styled from 'styled-components';
 import Spinner from '../common/Spinner/Spinner';
 import MovieItem from '../MovieItem/MovieItem';
-import 'react-multi-carousel/lib/styles.css';
 
 function MovieCollection({ fetchUrl, title }) {
     const dispatch = useDispatch();
@@ -30,11 +29,11 @@ function MovieCollection({ fetchUrl, title }) {
             {!isLoading && (
                 <Carousel
                     arrows
-                    containerClass="carousel-container"
+                    containerClass='carousel-container'
                     draggable
                     infinite
                     centerMode={true}
-                    itemClass="carousel-item"
+                    itemClass='carousel-item'
                     keyBoardControl
                     minimumTouchDrag={80}
                     responsive={{
