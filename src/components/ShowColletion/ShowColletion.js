@@ -6,7 +6,6 @@ import Carousel from 'react-multi-carousel';
 import Spinner from '../common/Spinner/Spinner';
 import ShowItem from '../ShowItem/ShowItem';
 import styled from 'styled-components';
-import 'react-multi-carousel/lib/styles.css';
 
 function ShowColletion({ fetchUrl, title }) {
     const dispatch = useDispatch();
@@ -30,11 +29,11 @@ function ShowColletion({ fetchUrl, title }) {
             {!isLoading && (
                 <Carousel
                     arrows
-                    containerClass="carousel-container"
+                    containerClass='carousel-container'
                     draggable
                     infinite
                     centerMode={true}
-                    itemClass="carousel-item"
+                    itemClass='carousel-item'
                     keyBoardControl
                     minimumTouchDrag={80}
                     responsive={{

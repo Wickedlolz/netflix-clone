@@ -6,7 +6,7 @@ function MovieItem({ movie }) {
     return (
         <Container to={'/movie/' + movie.id}>
             <Image
-                loading="lazy"
+                loading='lazy'
                 src={`${SMALL_IMAGE_URL}${
                     movie?.backdrop_path || movie?.poster_path
                 }`}
@@ -23,18 +23,10 @@ const Container = styled(Link)`
     color: #fff;
     text-decoration: none;
     width: 100%;
-
-    &:hover {
-        div,
-        h3 {
-            opacity: 1;
-        }
-    }
 `;
 
 const Image = styled.img`
     width: 100%;
-    height: 70%;
     object-fit: cover;
 `;
 
