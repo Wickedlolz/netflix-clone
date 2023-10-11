@@ -27,6 +27,7 @@ const Container = styled(Link)`
 
 const Image = styled.img`
     width: 100%;
+    height: 72%;
     object-fit: cover;
 `;
 
